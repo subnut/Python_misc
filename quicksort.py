@@ -2,7 +2,7 @@
 
 def quicksort(l):
     if len(l)>1:
-        p=l[0]                  #pivot
+        p=l[0]      #pivot
         less=[]
         more=[]
         i=0
@@ -18,11 +18,12 @@ def quicksort(l):
         l=less+l+more
     return l
 
+#print(quicksort([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
 def foo(l):
     l=quicksort(l)
     for i in range(len(l)):
         if l[i]==int(l[i]): l[i]=int(l[i])
-    return l   
+    return l
 
-#print(quicksort([float(x) for x in input("Enter the values separated by spaces: ").split()]))
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))
