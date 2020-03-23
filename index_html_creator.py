@@ -11,7 +11,7 @@ def contents(f):
         return file.readlines()
 
 from os import listdir
-l=[x for x in listdir() if x[-3:]=='.py']
+l=[x for x in listdir() if (x[-3:]=='.py' and x!='index_html_creator.py')]
 
 h.write('<br>')
 
