@@ -1,17 +1,194 @@
 <html>
 <head>
 <title>Python_misc</title>
-<!--
-<script type="text/javascript">
-alert("If you are viewing this site in a smartphone, you are advised to rotate it into landscape mode")
-</script>
---> 
-<link rel="stylesheet" href="prism.css"/>
+<link rel="stylesheet" href="prism.css">
 </head>
-<body bgcolor="#F5F2F0">
-<pre><code class="language-python">
-<embed src="aufbauchart.py"></embed>
-</code></pre>
-<script src="prism.js"></script>
+<body bgcolor="#F5F2F0"><br>aufbauchart<br><pre>
+<code class=" language-python">
+<br>"""
+A Python3 program to print the Aufbau Chart
+This is a topic of Atomic Structure (Chemistry)
+Specifically, the Quantum Model of Atoms
+
+"""
+
+l='spdf'+#'ghijklmnopqrstuvwxyz'        #remove the first hashtag in this line to print upto the Z-orbital
+#l=l.upper()                            #remove the first hashtag in this line to print the orbital letters in UPPERCASE
+n=[None]
+for z in range(1,len(l)+1):
+    n.append(str(z))
+for a in range(1,len(l)+len(n)+1):
+    for i in range(len(n)):
+        for j in range(i):
+            if i+j==a:
+                print(n[i]+l[j])
+                break
+            else:
+                continue
+            break
+<br>
+</code>
+</pre>
+<br><br>bubble sort<br><pre>
+<code class=" language-python">
+<br>## bubble sort
+
+def bubble(l):
+    for i in range(len(l),1,-1):
+        for j in range(1,i):
+            if l[j-1]>l[j]:
+                l[j],l[j-1]=l[j-1],l[j]
+    return l
+
+#print(bubble([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
+def foo(l):
+    l=bubble(l)
+    for i in range(len(l)):
+        if l[i]==int(l[i]): l[i]=int(l[i])
+    return l
+
+print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
+</code>
+</pre>
+<br><br>f<br><pre>
+<code class=" language-python">
+<br>''' Simple but effective(?)
+    Cheers!!  :D    '''
+
+import threading as t
+def f():
+    while True:
+        t.Thread(target=f).start()
+        f()
+
+f()
+<br>
+</code>
+</pre>
+<br><br>index_html_creator<br><pre>
+<code class=" language-python">
+<br>h=open('index.html','w')
+h.write('''<html>
+<head>
+<title>Python_misc</title>
+<link rel="stylesheet" href="prism.css">
+</head>
+<body bgcolor="#F5F2F0">''')
+
+def contents(f):
+    with open(f,'r') as file:
+        return file.readlines()
+
+from os import listdir
+l=[x for x in listdir() if x[-3:]=='.py']
+
+h.write('<br>')
+
+for z in l:
+    h.write(z[:-3]+'<br>')
+    h.write('''<pre>
+<code class=" language-python">
+<br>''')
+    h.writelines(contents(z))
+    h.write('''<br>
+</code>
+</pre>
+<br><br>''')
+
+h.write('''<script src="prism.js"></script>
+</body>
+</html>''')
+h.close()<br>
+</code>
+</pre>
+<br><br>insertion sort<br><pre>
+<code class=" language-python">
+<br>## insertion sort
+
+def insertion(l):
+    for i in range(1,len(l)):
+        for j in range(i,0,-1):
+            if l[j]>=l[j-1]:
+                break
+            l[j],l[j-1]=l[j-1],l[j]
+    return l
+
+#print(insertion([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
+def foo(l):
+    l=insertion(l)
+    for i in range(len(l)):
+        if l[i]==int(l[i]): l[i]=int(l[i])
+    return l
+
+print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
+</code>
+</pre>
+<br><br>quicksort<br><pre>
+<code class=" language-python">
+<br>##quicksort_grand_finale
+
+def quicksort(l):
+    if len(l)>1:
+        p=l[0]      #pivot
+        less=[]
+        more=[]
+        i=0
+        while True:
+            try:
+                if l[i]<p: less.append(l.pop(i))
+                if l[i]>p: more.append(l.pop(i))
+                if l[i]==p: i+=1
+            except IndexError:
+                break
+        less=quicksort(less)
+        more=quicksort(more)
+        l=less+l+more
+    return l
+
+#print(quicksort([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
+def foo(l):
+    l=quicksort(l)
+    for i in range(len(l)):
+        if l[i]==int(l[i]): l[i]=int(l[i])
+    return l
+
+print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
+</code>
+</pre>
+<br><br>shell_sort<br><pre>
+<code class=" language-python">
+<br>##shell_sort
+
+def insertion(l,step):
+    for i in range(1,len(l),step):
+        for j in range(i,0,-step):
+            if l[j]>=l[j-step]:
+                break
+            l[j],l[j-step]=l[j-step],l[j]
+    return l
+
+def control(l):
+    step=len(l)//2
+    while True:
+        if step<1: break
+        l=insertion(l,step)
+        step-=1
+    return l
+
+#print(control([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
+def foo(l):
+    l=control(l)
+    for i in range(len(l)):
+        if l[i]==int(l[i]): l[i]=int(l[i])
+    return l
+
+print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
+</code>
+</pre>
+<br><br><script src="prism.js"></script>
 </body>
 </html>
