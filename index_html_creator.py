@@ -20,7 +20,8 @@ for z in l:
     h.write('''<pre>
 <code class=" language-python">''')
     h.writelines(contents(z))
-    h.write('''</code>
+    h.write('''<br>
+</code>
 </pre>
 <br><br>''')
 
