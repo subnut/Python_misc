@@ -18,11 +18,9 @@ h.write('<br>')
 for z in l:
     h.write(z[:-3]+'<br>')
     h.write('''<pre>
-<code class=" language-python">
-<br>''')
+<code class=" language-python">''')
     h.writelines(contents(z))
-    h.write('''<br>
-</code>
+    h.write('''</code>
 </pre>
 <br><br>''')
 
