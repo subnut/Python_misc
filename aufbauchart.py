@@ -1,5 +1,6 @@
 """
 A Python3 program to print the Aufbau Chart
+
 This is a topic of Atomic Structure (Chemistry)
 Specifically, the Quantum Model of Atoms
 
