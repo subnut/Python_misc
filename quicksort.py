@@ -1,4 +1,4 @@
-##quicksort_grand_finale
+## quicksort
 
 def quicksort(l):
     if len(l)>1:

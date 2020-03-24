@@ -1,4 +1,4 @@
-## A Python3 program to print the Aufbau Chart
+## Aufbau Chart
 
 l='spdf'+#'ghijklmnopqrstuvwxyz'        #remove the first hashtag in this line to print upto the Z-orbital
 #l=l.upper()                            #remove the first hashtag in this line to print the orbital letters in UPPERCASE

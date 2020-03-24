@@ -1,4 +1,4 @@
-##shell_sort
+## shell_sort
 
 def insertion(l,step):
     for i in range(1,len(l),step):
