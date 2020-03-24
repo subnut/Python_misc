@@ -3,7 +3,24 @@
 <title>Python_misc</title>
 <link rel="stylesheet" href="prism.css">
 </head>
-<body bgcolor="#F5F2F0"><br><ul><li><a href="#0">aufbauchart</a></li><li><a href="#1">bubble sort</a></li><li><a href="#2">f</a></li><li><a href="#3">f_buggy</a></li><li><a href="#4">f_ultimate</a></li><li><a href="#5">insertion sort</a></li><li><a href="#6">quicksort</a></li><li><a href="#7">shell_sort</a></li></ul><br><br><a id="0"></a><br><br>aufbauchart<br><pre>
+<body bgcolor="#F5F2F0" link="#1F00FF" vlink="#1F00FF">
+<br>
+<ul>
+<li><a href="#0">aufbauchart</a></li>
+<li><a href="#1">bubble sort</a></li>
+<li><a href="#2">code_golf_palindrome_letters_only</a></li>
+<li><a href="#3">f</a></li>
+<li><a href="#4">f_buggy</a></li>
+<li><a href="#5">f_ultimate</a></li>
+<li><a href="#6">insertion sort</a></li>
+<li><a href="#7">quicksort</a></li>
+<li><a href="#8">shell_sort</a></li>
+</ul>
+<br><br>
+<a id="0"></a>
+<br><br>
+aufbauchart<br>
+<pre>
 <code class=" language-python">## Aufbau Chart
 
 l='spdf'+#'ghijklmnopqrstuvwxyz'        #remove the first hashtag in this line to print upto the Z-orbital
@@ -21,7 +38,11 @@ for a in range(1,len(l)+len(n)+1):
                 continue
             break<br>
 </code>
-</pre><a id="1"></a><br><br>bubble sort<br><pre>
+</pre>
+<a id="1"></a>
+<br><br>
+bubble sort<br>
+<pre>
 <code class=" language-python">## bubble sort
 
 def bubble(l):
@@ -41,7 +62,29 @@ def foo(l):
 
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
 </code>
-</pre><a id="2"></a><br><br>f<br><pre>
+</pre>
+<a id="2"></a>
+<br><br>
+code_golf_palindrome_letters_only<br>
+<pre>
+<code class=" language-python">## Source: https://stringlabs.io/codegolf/challenge/palindromicallyspeaking
+
+''' Write a function called hannah that takes in a string and returns
+    whether or not the letters (and only the letters) in that sentence are a palindrome (case insensitive).
+    Your function should return a boolean.  '''
+
+## Best submission: 70 bytes
+## My answer: 68 bytes 
+
+def hannah(s):
+	l=[x for x in s if x.isalpha()]
+	return l==l[::-1]<br>
+</code>
+</pre>
+<a id="3"></a>
+<br><br>
+f<br>
+<pre>
 <code class=" language-python">##  Simple and effective(?)
 ##  Cheers  :D
 
@@ -53,7 +96,11 @@ def f():
 
 f()<br>
 </code>
-</pre><a id="3"></a><br><br>f_buggy<br><pre>
+</pre>
+<a id="4"></a>
+<br><br>
+f_buggy<br>
+<pre>
 <code class=" language-python">import os,threading as t
 
 def f():
@@ -64,7 +111,11 @@ def f():
 
 f()<br>
 </code>
-</pre><a id="4"></a><br><br>f_ultimate<br><pre>
+</pre>
+<a id="5"></a>
+<br><br>
+f_ultimate<br>
+<pre>
 <code class=" language-python">import os,sys,threading
 
 def f():
@@ -75,7 +126,11 @@ def f():
 
 f()<br>
 </code>
-</pre><a id="5"></a><br><br>insertion sort<br><pre>
+</pre>
+<a id="6"></a>
+<br><br>
+insertion sort<br>
+<pre>
 <code class=" language-python">## insertion sort
 
 def insertion(l):
@@ -96,7 +151,11 @@ def foo(l):
 
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
 </code>
-</pre><a id="6"></a><br><br>quicksort<br><pre>
+</pre>
+<a id="7"></a>
+<br><br>
+quicksort<br>
+<pre>
 <code class=" language-python">## quicksort
 
 def quicksort(l):
@@ -127,7 +186,11 @@ def foo(l):
 
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
 </code>
-</pre><a id="7"></a><br><br>shell_sort<br><pre>
+</pre>
+<a id="8"></a>
+<br><br>
+shell_sort<br>
+<pre>
 <code class=" language-python">## shell_sort
 
 def insertion(l,step):
@@ -156,6 +219,7 @@ def foo(l):
 
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
 </code>
-</pre><script src="prism.js"></script>
+</pre>
+<script src="prism.js"></script>
 </body>
 </html>
