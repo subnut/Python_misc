@@ -1,10 +1,4 @@
-"""
-A Python3 program to print the Aufbau Chart
-
-This is a topic of Atomic Structure (Chemistry)
-Specifically, the Quantum Model of Atoms
-
-"""
+## A Python3 program to print the Aufbau Chart
 
 l='spdf'+#'ghijklmnopqrstuvwxyz'        #remove the first hashtag in this line to print upto the Z-orbital
 #l=l.upper()                            #remove the first hashtag in this line to print the orbital letters in UPPERCASE
