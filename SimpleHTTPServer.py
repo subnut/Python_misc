@@ -20,4 +20,12 @@ on the directory this code is executed in
 
 Simple way to quickly send some files :D
 
+
+also, for ftp server (again python2)
+
+pip install pyftpdlib
+python2 -m pyftpdlib --help
+
+see the help and configure as required :D
+
 '''
