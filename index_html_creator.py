@@ -10,6 +10,32 @@ def contents(f):
     with open(f,'r') as file:
         return file.readlines()
 
+##################################################################################################
+## Note that in the above function I have used "with open" instead of the normal file=open(...) ##
+## I could have used the following code:                                                        ##
+##                                                                                              ##
+##      def contents(f):                                                                        ##
+##          file=open(f,'r')                                                                    ##
+##          return file.readlines()                                                             ##
+##          file.close()                                                                        ##
+##                                                                                              ##
+## It seems exactly same as the one I've used, right?                                           ##
+## But hold on.... do you remember?                                                             ##
+## A function exits as soon as it recieves the "return" statement                               ##
+## Can you see the problem?                                                                     ##
+##                                                                                              ##
+## Yeah... As soon as the function reaches "return file.readlines()"                            ##
+## It just simply ignores the rest of the statements                                            ##
+## And so, the file remains open!                                                               ##
+##                                                                                              ##
+## So what?                                                                                     ##
+## So, if another section of code tries to open that file, it can result to data corruption!    ##
+## And nobody in their right mind would want something like that to happen, right?              ##
+##                                                                                              ##
+## And that is why i recommend using "with open"                                                ##
+## It ensures that the file being opened is gracefully closed                                   ##
+##################################################################################################
+
 from os import listdir
 l=[x for x in listdir('.') if (x[-3:]=='.py' and x!='index_html_creator.py')]
 
