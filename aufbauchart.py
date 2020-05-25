@@ -5,7 +5,7 @@ l='spdf'#+'ghijklmnopqrstuvwxyz'        #remove the first hashtag in this line t
 n=[None]
 for z in range(1,len(l)+1):
     n.append(str(z))
-for a in range(1,len(l)+len(n)+1):
+for a in range(1,len(l)+1):
     for i in range(len(n)):
         for j in range(i):
             if i+j==a:
