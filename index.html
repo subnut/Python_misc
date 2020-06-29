@@ -6,19 +6,94 @@
 <body bgcolor="#F5F2F0" link="#1F00FF" vlink="#1F00FF">
 <br>
 <ul>
-<li><a href="#0">SimpleHTTPServer_pyftpdlib</a></li>
-<li><a href="#1">aufbauchart</a></li>
-<li><a href="#2">bubble sort</a></li>
-<li><a href="#3">code_golf_palindrome_letters_only</a></li>
-<li><a href="#4">f</a></li>
-<li><a href="#5">f_buggy</a></li>
+<li><a href="#0">insertion sort</a></li>
+<li><a href="#1">code_golf_palindrome_letters_only</a></li>
+<li><a href="#2">f</a></li>
+<li><a href="#3">f_buggy</a></li>
+<li><a href="#4">SimpleHTTPServer_pyftpdlib</a></li>
+<li><a href="#5">aufbauchart</a></li>
 <li><a href="#6">f_ultimate</a></li>
-<li><a href="#7">insertion sort</a></li>
-<li><a href="#8">quicksort</a></li>
-<li><a href="#9">shell_sort</a></li>
+<li><a href="#7">shell_sort</a></li>
+<li><a href="#8">bubble sort</a></li>
+<li><a href="#9">run_command</a></li>
+<li><a href="#10">quicksort</a></li>
 </ul>
 <br><br>
 <a id="0"></a>
+<br><br>
+insertion sort<br>
+<pre>
+<code class=" language-python">## insertion sort
+
+def insertion(l):
+    for i in range(1,len(l)):
+        for j in range(i,0,-1):
+            if l[j]>=l[j-1]:
+                break
+            l[j],l[j-1]=l[j-1],l[j]
+    return l
+
+#print(insertion([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
+def foo(l):
+    l=insertion(l)
+    for i in range(len(l)):
+        if l[i]==int(l[i]): l[i]=int(l[i])
+    return l
+
+print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
+</code>
+</pre>
+<a id="1"></a>
+<br><br>
+code_golf_palindrome_letters_only<br>
+<pre>
+<code class=" language-python">## Source: https://stringlabs.io/codegolf/challenge/palindromicallyspeaking
+
+''' Write a function called hannah that takes in a string and returns
+    whether or not the letters (and only the letters) in that sentence are a palindrome (case insensitive).
+    Your function should return a boolean.  '''
+
+## Best submission: 70 bytes
+## My answer: 68 bytes 
+
+def hannah(s):
+	l=[x for x in s if x.isalpha()]
+	return l==l[::-1]<br>
+</code>
+</pre>
+<a id="2"></a>
+<br><br>
+f<br>
+<pre>
+<code class=" language-python">##  Simple and effective(?)
+##  Cheers  :D
+
+import threading as t
+def f():
+    while True:
+        t.Thread(target=f).start()
+        f()
+
+f()<br>
+</code>
+</pre>
+<a id="3"></a>
+<br><br>
+f_buggy<br>
+<pre>
+<code class=" language-python">import os,threading as t
+
+def f():
+    while True:
+        os.system('python f_buggy.py')
+        t.Thread(target=f).start()
+        f()
+
+f()<br>
+</code>
+</pre>
+<a id="4"></a>
 <br><br>
 SimpleHTTPServer_pyftpdlib<br>
 <pre>
@@ -55,7 +130,7 @@ see the help and configure as required :D
 '''<br>
 </code>
 </pre>
-<a id="1"></a>
+<a id="5"></a>
 <br><br>
 aufbauchart<br>
 <pre>
@@ -78,7 +153,55 @@ for a in range(1,len(l)+1):
 <br>
 </code>
 </pre>
-<a id="2"></a>
+<a id="6"></a>
+<br><br>
+f_ultimate<br>
+<pre>
+<code class=" language-python">import os,sys,threading
+
+def f():
+    while True:
+        os.system('python '+os.path.abspath(sys.argv[0]))
+        threading.Thread(target=f).start()
+        f()
+
+f()<br>
+</code>
+</pre>
+<a id="7"></a>
+<br><br>
+shell_sort<br>
+<pre>
+<code class=" language-python">## shell_sort
+
+def insertion(l,step):
+    for i in range(1,len(l),step):
+        for j in range(i,0,-step):
+            if l[j]>=l[j-step]:
+                break
+            l[j],l[j-step]=l[j-step],l[j]
+    return l
+
+def control(l):
+    step=len(l)//2
+    while True:
+        if step<1: break
+        l=insertion(l,step)
+        step-=1
+    return l
+
+#print(control([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
+def foo(l):
+    l=control(l)
+    for i in range(len(l)):
+        if l[i]==int(l[i]): l[i]=int(l[i])
+    return l
+
+print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
+</code>
+</pre>
+<a id="8"></a>
 <br><br>
 bubble sort<br>
 <pre>
@@ -102,96 +225,24 @@ def foo(l):
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
 </code>
 </pre>
-<a id="3"></a>
+<a id="9"></a>
 <br><br>
-code_golf_palindrome_letters_only<br>
+run_command<br>
 <pre>
-<code class=" language-python">## Source: https://stringlabs.io/codegolf/challenge/palindromicallyspeaking
+<code class=" language-python">## Used to run commands input as a single string
 
-''' Write a function called hannah that takes in a string and returns
-    whether or not the letters (and only the letters) in that sentence are a palindrome (case insensitive).
-    Your function should return a boolean.  '''
+def run(command):
+    command=command.split()
+    from subprocess import PIPE,Popen
+    process=Popen(command,stdout=PIPE,stderr=PIPE,text=True)
+    stdout,stderr=process.communicate()
+    exitcode=process.returncode
+    return {'stdout':stdout,'stderr':stderr,'exitcode':exitcode}
 
-## Best submission: 70 bytes
-## My answer: 68 bytes 
-
-def hannah(s):
-	l=[x for x in s if x.isalpha()]
-	return l==l[::-1]<br>
+<br>
 </code>
 </pre>
-<a id="4"></a>
-<br><br>
-f<br>
-<pre>
-<code class=" language-python">##  Simple and effective(?)
-##  Cheers  :D
-
-import threading as t
-def f():
-    while True:
-        t.Thread(target=f).start()
-        f()
-
-f()<br>
-</code>
-</pre>
-<a id="5"></a>
-<br><br>
-f_buggy<br>
-<pre>
-<code class=" language-python">import os,threading as t
-
-def f():
-    while True:
-        os.system('python f_buggy.py')
-        t.Thread(target=f).start()
-        f()
-
-f()<br>
-</code>
-</pre>
-<a id="6"></a>
-<br><br>
-f_ultimate<br>
-<pre>
-<code class=" language-python">import os,sys,threading
-
-def f():
-    while True:
-        os.system('python '+os.path.abspath(sys.argv[0]))
-        threading.Thread(target=f).start()
-        f()
-
-f()<br>
-</code>
-</pre>
-<a id="7"></a>
-<br><br>
-insertion sort<br>
-<pre>
-<code class=" language-python">## insertion sort
-
-def insertion(l):
-    for i in range(1,len(l)):
-        for j in range(i,0,-1):
-            if l[j]>=l[j-1]:
-                break
-            l[j],l[j-1]=l[j-1],l[j]
-    return l
-
-#print(insertion([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
-
-def foo(l):
-    l=insertion(l)
-    for i in range(len(l)):
-        if l[i]==int(l[i]): l[i]=int(l[i])
-    return l
-
-print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
-</code>
-</pre>
-<a id="8"></a>
+<a id="10"></a>
 <br><br>
 quicksort<br>
 <pre>
@@ -219,39 +270,6 @@ def quicksort(l):
 
 def foo(l):
     l=quicksort(l)
-    for i in range(len(l)):
-        if l[i]==int(l[i]): l[i]=int(l[i])
-    return l
-
-print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
-</code>
-</pre>
-<a id="9"></a>
-<br><br>
-shell_sort<br>
-<pre>
-<code class=" language-python">## shell_sort
-
-def insertion(l,step):
-    for i in range(1,len(l),step):
-        for j in range(i,0,-step):
-            if l[j]>=l[j-step]:
-                break
-            l[j],l[j-step]=l[j-step],l[j]
-    return l
-
-def control(l):
-    step=len(l)//2
-    while True:
-        if step<1: break
-        l=insertion(l,step)
-        step-=1
-    return l
-
-#print(control([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
-
-def foo(l):
-    l=control(l)
     for i in range(len(l)):
         if l[i]==int(l[i]): l[i]=int(l[i])
     return l
