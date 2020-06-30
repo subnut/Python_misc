@@ -40,6 +40,8 @@ def main():
     print("yay!")
 
 
-from sys import version_info,platform
-from os import getlogin
+try: from sys import version_info,platform; from os import getlogin
+except ModuleNotFoundError: print("Please insure that the following modules are available:\nsys, os"); exit()
+else: pass
+
 if (__name__=="__main__") & check(): main()

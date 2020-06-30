@@ -15,9 +15,10 @@
 <li><a href="#6">f_ultimate</a></li>
 <li><a href="#7">shell_sort</a></li>
 <li><a href="#8">bubble sort</a></li>
-<li><a href="#9">monitotilex</a></li>
-<li><a href="#10">run_command</a></li>
-<li><a href="#11">quicksort</a></li>
+<li><a href="#9">autocomplete_example</a></li>
+<li><a href="#10">monitotilex</a></li>
+<li><a href="#11">run_command</a></li>
+<li><a href="#12">quicksort</a></li>
 </ul>
 <br><br>
 <a id="0"></a>
@@ -228,6 +229,30 @@ print(foo([float(x) for x in input("Enter the values separated by spaces: ").spl
 </pre>
 <a id="9"></a>
 <br><br>
+autocomplete_example<br>
+<pre>
+<code class=" language-python">import readline
+
+addrs = ['angela@domain.com', 'michael@domain.com', 'david@test.com']
+
+def completer(text, state):
+    options = [x for x in addrs if x.startswith(text)]
+    try:
+        return options[state]
+    except IndexError:
+        return None
+
+readline.set_completer(completer)
+readline.parse_and_bind("tab: complete")
+
+while 1:
+    a = input("> ")
+    print("You entered", a)
+<br>
+</code>
+</pre>
+<a id="10"></a>
+<br><br>
 monitotilex<br>
 <pre>
 <code class=" language-python">def run(command):
@@ -272,13 +297,15 @@ def main():
     print("yay!")
 
 
-from sys import version_info,platform
-from os import getlogin
+try: from sys import version_info,platform; from os import getlogin
+except ModuleNotFoundError: print("Please insure that the following modules are available:\nsys, os"); exit()
+else: pass
+
 if (__name__=="__main__") & check(): main()
 <br>
 </code>
 </pre>
-<a id="10"></a>
+<a id="11"></a>
 <br><br>
 run_command<br>
 <pre>
@@ -294,7 +321,7 @@ def run(command):
 <br>
 </code>
 </pre>
-<a id="11"></a>
+<a id="12"></a>
 <br><br>
 quicksort<br>
 <pre>
