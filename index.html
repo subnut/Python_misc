@@ -11,14 +11,15 @@
 <li><a href="#2">f</a></li>
 <li><a href="#3">f_buggy</a></li>
 <li><a href="#4">SimpleHTTPServer_pyftpdlib</a></li>
-<li><a href="#5">aufbauchart</a></li>
-<li><a href="#6">f_ultimate</a></li>
+<li><a href="#5">f_ultimate</a></li>
+<li><a href="#6">ansi_color_print</a></li>
 <li><a href="#7">shell_sort</a></li>
 <li><a href="#8">bubble sort</a></li>
 <li><a href="#9">autocomplete_example</a></li>
-<li><a href="#10">monitotilex</a></li>
-<li><a href="#11">run_command</a></li>
-<li><a href="#12">quicksort</a></li>
+<li><a href="#10">aufbau</a></li>
+<li><a href="#11">MonitoTileX</a></li>
+<li><a href="#12">run_command</a></li>
+<li><a href="#13">quicksort</a></li>
 </ul>
 <br><br>
 <a id="0"></a>
@@ -134,29 +135,6 @@ see the help and configure as required :D
 </pre>
 <a id="5"></a>
 <br><br>
-aufbauchart<br>
-<pre>
-<code class=" language-python">## Aufbau Chart
-
-l='spdf'#+'ghijklmnopqrstuvwxyz'        #remove the first hashtag in this line to print upto the Z-orbital
-#l=l.upper()                            #remove the first hashtag in this line to print the orbital letters in UPPERCASE
-n=[None]
-for z in range(1,len(l)+1):
-    n.append(str(z))
-for a in range(1,len(l)+1):
-    for i in range(len(n)):
-        for j in range(i):
-            if i+j==a:
-                print(n[i]+l[j])
-                break
-            else:
-                continue
-            break
-<br>
-</code>
-</pre>
-<a id="6"></a>
-<br><br>
 f_ultimate<br>
 <pre>
 <code class=" language-python">import os,sys,threading
@@ -168,6 +146,20 @@ def f():
         f()
 
 f()<br>
+</code>
+</pre>
+<a id="6"></a>
+<br><br>
+ansi_color_print<br>
+<pre>
+<code class=" language-python">def colorPrint(string,colorArgs,end='\n'):
+    import sys
+    fore=back=None
+    try: fore=colorArgs[0]
+    except: pass
+    try: back=colorArgs[1]
+    sys.stdout.write('\033[38;5;'+str(foreColor)+'m'+string+'')
+<br>
 </code>
 </pre>
 <a id="7"></a>
@@ -253,9 +245,104 @@ while 1:
 </pre>
 <a id="10"></a>
 <br><br>
-monitotilex<br>
+aufbau<br>
 <pre>
-<code class=" language-python">def run(command):
+<code class=" language-python">## Aufbau
+class Aufbau:
+    def __init__(self,args=None):
+        if args != None:
+            if type(args) == type(str()):
+                self.globalOrbitalList = args
+                self.generateFromOrbitalList()
+            if type(args) == type(int()):
+                self.globalLastOrbit = args
+                self.generateFromLastOrbit()
+
+    def generateFromOrbitalList(self,orbitalList=None):
+        if not orbitalList:
+            try: orbitalList = self.globalOrbitalList
+            except NameError: raise NameError("Orbital list not defined")
+        orbitList   = [None]
+        returnList  = []
+        for orbitNo in range(1,2*len(orbitalList)+1):
+            orbitList.append(str(orbitNo))
+        for currentEnergy in range(1,2*len(orbitalList)+1):
+            for currentOrbitEnergy in range(len(orbitList)):
+                for currentOrbitalEnergy in range(currentOrbitEnergy):
+                    if currentOrbitEnergy + currentOrbitalEnergy == currentEnergy:
+                        returnList.append(orbitList[currentOrbitEnergy]+orbitalList[currentOrbitalEnergy])
+                        break
+                    else:
+                        continue
+                    break
+        self.globalOutput = returnList
+        self.globalOrbitList = orbitList
+
+    def generateFromLastOrbit(self,lastOrbit=None):
+        if not lastOrbit:
+            try: lastOrbit = self.globalLastOrbit
+            except NameError: raise NameError('Last orbit number not specified')
+        
+
+    def printList(self):
+        for orbital in self.globalOutput:
+            print(orbital)
+
+
+    def printChart(self):
+        for orbit in self.globalOrbitList:
+            for orbital in self.globalOutput:
+                if orbital[:-1] == str(orbit):
+                    if len(self.globalOrbitList[-1]) > 1 and len(orbital) < 3 :
+                        print('0' + orbital,end=' ')
+                    else:
+                        print(orbital,end=' ')
+            if orbit and int(orbit) > len(self.globalOrbitalList):
+                print('...',end=' ')
+            print()
+        print()
+
+
+def main():
+    print("""What do you have?
+    1. Orbital List
+    2. Last Orbit number""")
+    userInput = input("Enter your option: ")
+    if userInput not in ('1','2'):
+        print("Invalid option!")
+        return
+    elif userInput == '1': userInput = input("Please enter the order of the orbitals WITHOUT whitespace: ")
+    elif userInput == '2': userInput = input("Please enter the last orbit number: ")
+    userObject = Aufbau(userInput)
+    print("""What do you want to print?
+    1. Aufbau Chart
+    2. Aufbau List""")
+    userInput = input("Enter your option: ")
+    if userInput not in ('1','2'):
+        print("Invalid option!")
+        return
+    elif userInput == '1': userObject.printChart()
+    elif userInput == '2': userObject.printList()
+
+if __name__ == '__main__':
+    print("To quit, press Ctrl-C anytime")
+    while True:
+        try:
+            main()
+        except KeyboardInterrupt:
+            print("\nExiting ...")
+            break
+<br>
+</code>
+</pre>
+<a id="11"></a>
+<br><br>
+MonitoTileX<br>
+<pre>
+<code class=" language-python">## MonitoTileX
+## Yes, the X stands for X
+
+def run(command):
     from subprocess import PIPE,Popen
     process=Popen(["sh","-c",command],stdout=PIPE,stderr=PIPE,text=True)
     stdout,stderr=process.communicate()
@@ -268,7 +355,7 @@ def get_loginid():
             return string.split()[0]
     else:
         print("No non-tty logins of this user has been found. Please login into a X session.")
-        exit()
+        exit(1)
 
 def get_session_type():
     return run("loginctl show-session "+get_loginid()+" -p Type")['stdout'].split('=')[1].split('\n')[0]
@@ -279,10 +366,17 @@ def check_xrandr():
     elif xrandr_code == 127: print("command 'xrandr' not found \nPlease install the package which includes this command")
     elif xrandr_code == 1: print("xrandr exited with exit code 1\nAre you on a X session? This program only runs inside an X session")
     else: print("Unknown error while running 'xrandr'")
-    exit()
+    exit(1)
+
+def check_readline():
+    try: import readline
+    except ModuleNotFoundError:
+        exitcode = run("python -m pip install readline")['exitcode']
+        if exitcode != 0: print("Module 'readline' was not found. Please install."); exit(1); return False
+    return True
 
 def check():
-   if (tuple(version_info)[0]==3) & (platform=='linux') & (get_session_type()=='x11') & check_xrandr():
+   if (tuple(version_info)[0]==3) & (platform=='linux') & (get_session_type()=='x11') & check_xrandr() & check_readline():
         return True
    else:
         if tuple(version_info)[0]!=3: print("Python v3 needed")
@@ -293,19 +387,115 @@ def check():
         else: print("Unknown error")
         return False 
 
+
+def my_completer_helper(inputText,commands,loopState):
+    matchList = [x for x in commands if x.startswith(inputText)]
+    
+    if len(matchList)==0:
+        if loopState > 0: return None
+        for l in range(1,len(inputText)):
+            matches = [x for x in commands if x.startswith(inputText[:-l])]
+            if len(matches) > 0:
+                return matches[0]+' '
+
+    if len(matchList)==1:
+        if loopState==0: return matchList[0]+' '
+        else: return None
+    
+    else:
+        try: return matchList[loopState]
+        except IndexError: return None
+
+
+
+
+def my_completer_function(inputText, loopState):
+    firstCommands = ['do','orient','status','quit']
+    monitors = [ x for x in run("xrandr -q | grep ' connected' | cut -d' ' -f1")['stdout'].split('\n') if len(x) > 0 ]
+    directionOf = [ 'left', 'right', 'top', 'bottom' ]
+    alignTo = { 
+                'left':('top', 'bottom'),
+                'right':('top', 'bottom'),
+                'top':('left', 'right'),
+                'bottom':('left', 'right')
+              }
+    if inputText.count(' ') == 0:
+        return my_completer_helper(inputText,firstCommands,loopState)
+    if inputText.count(' ') == 1:
+        firstCommand = inputText.split()[0]
+        availableCommands = 
+        return my_completer_helper(,monitors,loopState)
+    
+
+def currentlyConnected(monitors):
+    return "Currently connected monitors are: "+monitorListToString(monitors)
+
+def monitorListToString(monitors):
+    monitorString = ""
+    for x in monitors:
+        monitorString += x + " "
+    return monitorString
+
+
+
+
+
+def main_loop():
+    userInput = input('\n> ')
+    monitors = [ x for x in run("xrandr -q | grep ' connected' | cut -d' ' -f1")['stdout'].split('\n') if len(x) > 0 ]
+    
+
+    
+    if userInput == "status":
+        print(currentlyConnected(monitors))
+    if userInput in ("quit","q"):
+        return False
+    return True
+
 def main():
-    print("yay!")
+    if not check(): print("Unknown Error"); exit(1); return False
+    import readline
+    readline.set_completer(my_completer_function)
+    readline.parse_and_bind("tab: complete")
+    monitors = [ x for x in run("xrandr -q | grep ' connected' | cut -d' ' -f1")['stdout'].split('\n') if len(x) > 0 ]
+    print("""Welcome to Monitotilex!
+Enter 'q' or 'quit' to exit
+{}
+To get this list of connected monitors, run 'status' anytime
+
+Valid commands are of the syntax:   
+    do <monitor-name-1> <left|right|top|bottom> <monitor-name-2> <aligned-to-side>
+    orient <monitor-name> <normal|left-side-down|right-side-down|upside-down>
+And are interpreted as:
+    <monitor-name-1> is <left|right|top|bottom> of <monitor-name-2> and aligned to the <aligned-to-side> side of <monitor-name-2>
+    <monitor-name> has been kept in the position <normal|left-side-down|right-side-down|upside-down>. So adjust the display accordingly.
+
+P.S.: Tab-completion is available at every step""".format(currentlyConnected(monitors)))
+    loop = True
+    while loop:
+        loop = main_loop()
+    exit(0)
+
+
 
 
 try: from sys import version_info,platform; from os import getlogin
-except ModuleNotFoundError: print("Please insure that the following modules are available:\nsys, os"); exit()
+except ModuleNotFoundError: print("Please insure that the following modules are available:\nsys, os"); exit(1)
 else: pass
 
 if (__name__=="__main__") & check(): main()
+
+
+# To-do
+""" wrong command -> suggest
+command interpreter -> input().split()
+main logic
+mirror command (mirror <mon1> <mon2>)
+"""
 <br>
 </code>
 </pre>
-<a id="11"></a>
+<a id="12"></a>
 <br><br>
 run_command<br>
 <pre>
@@ -321,7 +511,7 @@ def run(command):
 <br>
 </code>
 </pre>
-<a id="12"></a>
+<a id="13"></a>
 <br><br>
 quicksort<br>
 <pre>
