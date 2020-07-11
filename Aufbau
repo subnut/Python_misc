@@ -1,0 +1,6 @@
+add 'Aufbau'
+[master adcb021] aufbau --
+ 4 files changed, 149 insertions(+), 81 deletions(-)
+ create mode 100644 Aufbau
+ rename aufbau.py => Aufbau.py (70%)
+ create mode 100644 __name__=__main__.py
