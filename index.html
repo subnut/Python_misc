@@ -247,10 +247,10 @@ while 1:
 <br><br>
 aufbau<br>
 <pre>
-<code class=" language-python">## Aufbau
+<code class=" language-python"># Aufbau
 class Aufbau:
-    def __init__(self,args=None):
-        if args != None:
+    def __init__(self, args=None):
+        if args is not None:
             if type(args) == type(str()):
                 self.globalOrbitalList = args
                 self.generateFromOrbitalList()
@@ -258,19 +258,22 @@ class Aufbau:
                 self.globalLastOrbit = args
                 self.generateFromLastOrbit()
 
-    def generateFromOrbitalList(self,orbitalList=None):
+    def generateFromOrbitalList(self, orbitalList=None):
         if not orbitalList:
-            try: orbitalList = self.globalOrbitalList
-            except NameError: raise NameError("Orbital list not defined")
-        orbitList   = [None]
-        returnList  = []
-        for orbitNo in range(1,2*len(orbitalList)+1):
+            try:
+                orbitalList = self.globalOrbitalList
+            except NameError:
+                raise NameError("Orbital list not defined")
+        orbitList = [None]
+        returnList = []
+        for orbitNo in range(1, 2*len(orbitalList)+1):
             orbitList.append(str(orbitNo))
-        for currentEnergy in range(1,2*len(orbitalList)+1):
+        for currentEnergy in range(1, 2*len(orbitalList)+1):
             for currentOrbitEnergy in range(len(orbitList)):
                 for currentOrbitalEnergy in range(currentOrbitEnergy):
                     if currentOrbitEnergy + currentOrbitalEnergy == currentEnergy:
-                        returnList.append(orbitList[currentOrbitEnergy]+orbitalList[currentOrbitalEnergy])
+                        returnList.append(orbitList[currentOrbitEnergy]
+                                          + orbitalList[currentOrbitalEnergy])
                         break
                     else:
                         continue
@@ -278,11 +281,12 @@ class Aufbau:
         self.globalOutput = returnList
         self.globalOrbitList = orbitList
 
-    def generateFromLastOrbit(self,lastOrbit=None):
+    def generateFromLastOrbit(self, lastOrbit=None):
         if not lastOrbit:
-            try: lastOrbit = self.globalLastOrbit
-            except NameError: raise NameError('Last orbit number not specified')
-        
+            try:
+                lastOrbit = self.globalLastOrbit
+            except NameError:
+                raise NameError('Last orbit number not specified')
 
     def printList(self):
         for orbital in self.globalOutput:
@@ -294,11 +298,11 @@ class Aufbau:
             for orbital in self.globalOutput:
                 if orbital[:-1] == str(orbit):
                     if len(self.globalOrbitList[-1]) > 1 and len(orbital) < 3 :
-                        print('0' + orbital,end=' ')
+                        print('0' + orbital, end=' ')
                     else:
-                        print(orbital,end=' ')
+                        print(orbital, end=' ')
             if orbit and int(orbit) > len(self.globalOrbitalList):
-                print('...',end=' ')
+                print('...', end=' ')
             print()
         print()
 
@@ -308,7 +312,7 @@ def main():
     1. Orbital List
     2. Last Orbit number""")
     userInput = input("Enter your option: ")
-    if userInput not in ('1','2'):
+    if userInput not in ('1', '2'):
         print("Invalid option!")
         return
     elif userInput == '1': userInput = input("Please enter the order of the orbitals WITHOUT whitespace: ")
@@ -318,14 +322,15 @@ def main():
     1. Aufbau Chart
     2. Aufbau List""")
     userInput = input("Enter your option: ")
-    if userInput not in ('1','2'):
+    if userInput not in ('1', '2'):
         print("Invalid option!")
         return
     elif userInput == '1': userObject.printChart()
     elif userInput == '2': userObject.printList()
 
+
 if __name__ == '__main__':
-    print("To quit, press Ctrl-C anytime")
+    print("To quit,  press Ctrl-C anytime")
     while True:
         try:
             main()
