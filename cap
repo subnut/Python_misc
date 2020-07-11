@@ -1,0 +1,4 @@
+#!/bin/sh
+python ./index_html_creator.py
+git add --all --verbose
+git commit -m "$*" && git push
