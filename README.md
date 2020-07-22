@@ -5,3 +5,9 @@ Let's play some Code Golf. See if you can try and make the programs using lesser
 Feel free to explore and ask questions. Corrections are always welcome.
 
 Enjoy!
+
+Oh, you want to know what editor I use?
+* Terminal  - Kitty
+* Editor    - Neovim
+* Linter    - ALE.vim
+* Formatter - black   `pip install black`

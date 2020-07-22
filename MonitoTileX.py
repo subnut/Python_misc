@@ -44,12 +44,12 @@ def check():
         elif get_session_type()!="x11": print("Needs X11 session")
         elif not check_xrandr(): pass
         else: print("Unknown error")
-        return False 
+        return False
 
 
 def my_completer_helper(inputText,commands,loopState):
     matchList = [x for x in commands if x.startswith(inputText)]
-    
+
     if len(matchList)==0:
         if loopState > 0: return None
         for l in range(1,len(inputText)):
@@ -60,7 +60,7 @@ def my_completer_helper(inputText,commands,loopState):
     if len(matchList)==1:
         if loopState==0: return matchList[0]+' '
         else: return None
-    
+
     else:
         try: return matchList[loopState]
         except IndexError: return None
@@ -72,7 +72,7 @@ def my_completer_function(inputText, loopState):
     firstCommands = ['do','orient','status','quit']
     monitors = [ x for x in run("xrandr -q | grep ' connected' | cut -d' ' -f1")['stdout'].split('\n') if len(x) > 0 ]
     directionOf = [ 'left', 'right', 'top', 'bottom' ]
-    alignTo = { 
+    alignTo = {
                 'left':('top', 'bottom'),
                 'right':('top', 'bottom'),
                 'top':('left', 'right'),
@@ -82,9 +82,9 @@ def my_completer_function(inputText, loopState):
         return my_completer_helper(inputText,firstCommands,loopState)
     if inputText.count(' ') == 1:
         firstCommand = inputText.split()[0]
-        availableCommands = 
+        availableCommands =
         return my_completer_helper(,monitors,loopState)
-    
+
 
 def currentlyConnected(monitors):
     return "Currently connected monitors are: "+monitorListToString(monitors)
@@ -102,9 +102,9 @@ def monitorListToString(monitors):
 def main_loop():
     userInput = input('\n> ')
     monitors = [ x for x in run("xrandr -q | grep ' connected' | cut -d' ' -f1")['stdout'].split('\n') if len(x) > 0 ]
-    
 
-    
+
+
     if userInput == "status":
         print(currentlyConnected(monitors))
     if userInput in ("quit","q"):
@@ -122,7 +122,7 @@ Enter 'q' or 'quit' to exit
 {}
 To get this list of connected monitors, run 'status' anytime
 
-Valid commands are of the syntax:   
+Valid commands are of the syntax:
     do <monitor-name-1> <left|right|top|bottom> <monitor-name-2> <aligned-to-side>
     orient <monitor-name> <normal|left-side-down|right-side-down|upside-down>
 And are interpreted as:
@@ -139,7 +139,7 @@ P.S.: Tab-completion is available at every step""".format(currentlyConnected(mon
 
 
 try: from sys import version_info,platform; from os import getlogin
-except ModuleNotFoundError: print("Please insure that the following modules are available:\nsys, os"); exit(1)
+except ModuleNotFoundError: print("Please ensure that the following modules are available:\nsys, os"); exit(1)
 else: pass
 
 if (__name__=="__main__") & check(): main()
