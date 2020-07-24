@@ -118,10 +118,10 @@ def main(user_object):
 
 if __name__ == "__main__":
     user_object = Aufbau()
-    print("To quit_,  press Ctrl-C anytime")
+    print("To quit, press Ctrl-C anytime")
     while True:
         try:
             main(user_object)
         except KeyboardInterrupt:
-            print("\n_exiting ...")
+            print("\nExiting ...")
             break
