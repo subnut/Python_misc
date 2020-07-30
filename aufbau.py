@@ -90,7 +90,7 @@ def main(user_object):
     if user_input not in ("1", "2"):
         print("Invalid option!")
         return
-    elif user_input == "1":
+    if user_input == "1":
         user_input = input(
             "Please enter the order of the orbitals WITHOUT whitespace: "
         )
@@ -110,7 +110,7 @@ def main(user_object):
     if user_input not in ("1", "2"):
         print("Invalid option!")
         return
-    elif user_input == "1":
+    if user_input == "1":
         user_object.print_chart()
     elif user_input == "2":
         user_object.print_list()

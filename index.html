@@ -10,17 +10,18 @@
 <li><a href="#1">code_golf_palindrome_letters_only</a></li>
 <li><a href="#2">__name__=__main__</a></li>
 <li><a href="#3">f</a></li>
-<li><a href="#4">f_buggy</a></li>
-<li><a href="#5">SimpleHTTPServer_pyftpdlib</a></li>
-<li><a href="#6">f_ultimate</a></li>
-<li><a href="#7">ansi_color_print</a></li>
-<li><a href="#8">shell_sort</a></li>
-<li><a href="#9">bubble sort</a></li>
-<li><a href="#10">autocomplete_example</a></li>
-<li><a href="#11">aufbau</a></li>
-<li><a href="#12">MonitoTileX</a></li>
-<li><a href="#13">run_command</a></li>
-<li><a href="#14">quicksort</a></li>
+<li><a href="#4">infix_to_postfix_new</a></li>
+<li><a href="#5">f_buggy</a></li>
+<li><a href="#6">SimpleHTTPServer_pyftpdlib</a></li>
+<li><a href="#7">f_ultimate</a></li>
+<li><a href="#8">ansi_color_print</a></li>
+<li><a href="#9">shell_sort</a></li>
+<li><a href="#10">bubble sort</a></li>
+<li><a href="#11">autocomplete_example</a></li>
+<li><a href="#12">aufbau</a></li>
+<li><a href="#13">MonitoTileX</a></li>
+<li><a href="#14">run_command</a></li>
+<li><a href="#15">quicksort</a></li>
 </ul>
 <br><br>
 <a id="0"></a>
@@ -97,6 +98,120 @@ f()<br>
 </pre>
 <a id="4"></a>
 <br><br>
+infix_to_postfix_new<br>
+<pre>
+<code class=" language-python">#!/bin/python3
+import tabulate
+
+
+def infix_postfix_non_boolean(input_infix):
+    table_list = []
+    if not isinstance(input_infix, str):
+        raise TypeError("This function takes only string as argument")
+    input_char_list = [char for char in input_infix if not char.isspace()]
+    output = ""
+    stack = ['(']
+    table_list.append(['start', str(stack), output])
+    for char in input_char_list:
+        if char.isalnum():
+            output += char
+        elif char in "()*^/+-":
+            if char == ")":
+                while True:
+                    stack_char = stack.pop()
+                    if stack_char == "(":
+                        break
+                    output += stack_char
+            elif char == '(':
+                stack.append(char)
+            elif char in "+-":
+                while True:
+                    stack_char = stack.pop()
+                    if stack_char == "(":
+                        stack.append(stack_char)
+                        break
+                    output += stack_char
+                stack.append(char)
+            elif char in "*/":
+                while True:
+                    stack_char = stack.pop()
+                    if stack_char in "(+-":
+                        stack.append(stack_char)
+                        break
+                    output += stack_char
+                stack.append(char)
+            elif char in "^":
+                stack.append(char)
+            else:
+                raise RuntimeError("Unknown Operator")
+        else:
+            raise ("Unknown character")
+        table_list.append(["'"+char+"'", str(stack), output])
+    char = ''
+    while len(stack) > 1:
+        stack_char = stack.pop()
+        output += stack_char
+        table_list.append(['end', str(stack), output])
+    table = tabulate.tabulate(table_list)
+    print(table)
+
+
+def infix_postfix_boolean(input_infix):
+    table_list = []
+    if not isinstance(input_infix, str):
+        raise TypeError("This function takes only string as argument")
+    input_word_list = input_infix.split()
+    output = ""
+    stack = ['(']
+    table_list.append(['start', str(stack), output])
+    for word in input_word_list:
+        if word not in ('NOT', 'AND', 'OR'):
+            output += word + ' '
+        elif word in ('NOT', 'AND', 'OR', '(', ')'):
+            if word == ")":
+                while True:
+                    stack_word = stack.pop()
+                    if stack_word == "(":
+                        break
+                    output += stack_word + ' '
+            elif word == '(':
+                stack.append(word)
+            elif word in ('AND', 'OR'):
+                while True:
+                    stack_word = stack.pop()
+                    if stack_word in "(":
+                        stack.append(stack_word)
+                        break
+                    output += stack_word + ' '
+                stack.append(word)
+            elif word == "NOT":
+                stack.append(word)
+            else:
+                raise RuntimeError("Unknown Operator")
+        else:
+            raise ("Unknown operator")
+        table_list.append(["'"+word+"'", str(stack), output])
+    word = ''
+    while len(stack) > 1:
+        stack_word = stack.pop()
+        output += stack_word + ' '
+        table_list.append(['end', str(stack), output])
+    table = tabulate.tabulate(table_list)
+    print(table)
+
+
+if __name__ == "__main__":
+    while True:
+        input_str = input("> ")
+        if ('AND' in input_str.split()) or ('OR' in input_str.split()) or ('NOT' in input_str.split()):
+            infix_postfix_boolean(input_str)
+        else:
+            infix_postfix_non_boolean(input_str)
+<br>
+</code>
+</pre>
+<a id="5"></a>
+<br><br>
 f_buggy<br>
 <pre>
 <code class=" language-python">import os,threading as t
@@ -110,7 +225,7 @@ def f():
 f()<br>
 </code>
 </pre>
-<a id="5"></a>
+<a id="6"></a>
 <br><br>
 SimpleHTTPServer_pyftpdlib<br>
 <pre>
@@ -150,7 +265,7 @@ SimpleHTTPServer_pyftpdlib<br>
 <br>
 </code>
 </pre>
-<a id="6"></a>
+<a id="7"></a>
 <br><br>
 f_ultimate<br>
 <pre>
@@ -165,7 +280,7 @@ def f():
 f()<br>
 </code>
 </pre>
-<a id="7"></a>
+<a id="8"></a>
 <br><br>
 ansi_color_print<br>
 <pre>
@@ -179,7 +294,7 @@ ansi_color_print<br>
 <br>
 </code>
 </pre>
-<a id="8"></a>
+<a id="9"></a>
 <br><br>
 shell_sort<br>
 <pre>
@@ -212,7 +327,7 @@ def foo(l):
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
 </code>
 </pre>
-<a id="9"></a>
+<a id="10"></a>
 <br><br>
 bubble sort<br>
 <pre>
@@ -236,7 +351,7 @@ def foo(l):
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
 </code>
 </pre>
-<a id="10"></a>
+<a id="11"></a>
 <br><br>
 autocomplete_example<br>
 <pre>
@@ -260,7 +375,7 @@ while 1:
 <br>
 </code>
 </pre>
-<a id="11"></a>
+<a id="12"></a>
 <br><br>
 aufbau<br>
 <pre>
@@ -356,7 +471,7 @@ def main(user_object):
     if user_input not in ("1", "2"):
         print("Invalid option!")
         return
-    elif user_input == "1":
+    if user_input == "1":
         user_input = input(
             "Please enter the order of the orbitals WITHOUT whitespace: "
         )
@@ -376,7 +491,7 @@ def main(user_object):
     if user_input not in ("1", "2"):
         print("Invalid option!")
         return
-    elif user_input == "1":
+    if user_input == "1":
         user_object.print_chart()
     elif user_input == "2":
         user_object.print_list()
@@ -384,17 +499,17 @@ def main(user_object):
 
 if __name__ == "__main__":
     user_object = Aufbau()
-    print("To quit_,  press Ctrl-C anytime")
+    print("To quit, press Ctrl-C anytime")
     while True:
         try:
             main(user_object)
         except KeyboardInterrupt:
-            print("\n_exiting ...")
+            print("\nExiting ...")
             break
 <br>
 </code>
 </pre>
-<a id="12"></a>
+<a id="13"></a>
 <br><br>
 MonitoTileX<br>
 <pre>
@@ -554,7 +669,7 @@ mirror command (mirror <mon1> <mon2>)
 <br>
 </code>
 </pre>
-<a id="13"></a>
+<a id="14"></a>
 <br><br>
 run_command<br>
 <pre>
@@ -570,7 +685,7 @@ def run(command):
 <br>
 </code>
 </pre>
-<a id="14"></a>
+<a id="15"></a>
 <br><br>
 quicksort<br>
 <pre>
