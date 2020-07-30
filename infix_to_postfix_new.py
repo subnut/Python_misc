@@ -99,9 +99,15 @@ def infix_postfix_boolean(input_infix):
 
 
 if __name__ == "__main__":
-    while True:
-        input_str = input("> ")
-        if ('AND' in input_str.split()) or ('OR' in input_str.split()) or ('NOT' in input_str.split()):
-            infix_postfix_boolean(input_str)
-        else:
-            infix_postfix_non_boolean(input_str)
+    try:
+        while True:
+            input_str = input("> ")
+            for check in ('AND', 'OR', 'NOT'):
+                if check in input_str.upper():
+                    infix_postfix_boolean(input_str)
+                    break
+            else:
+                infix_postfix_non_boolean(input_str)
+    except (EOFError, KeyboardInterrupt):
+        print()
+        exit(0)
