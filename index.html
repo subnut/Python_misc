@@ -12,16 +12,17 @@
 <li><a href="#3">f</a></li>
 <li><a href="#4">infix_to_postfix_new</a></li>
 <li><a href="#5">f_buggy</a></li>
-<li><a href="#6">SimpleHTTPServer_pyftpdlib</a></li>
-<li><a href="#7">f_ultimate</a></li>
-<li><a href="#8">ansi_color_print</a></li>
-<li><a href="#9">shell_sort</a></li>
-<li><a href="#10">bubble sort</a></li>
-<li><a href="#11">autocomplete_example</a></li>
-<li><a href="#12">aufbau</a></li>
-<li><a href="#13">MonitoTileX</a></li>
-<li><a href="#14">run_command</a></li>
-<li><a href="#15">quicksort</a></li>
+<li><a href="#6">gtk_theme_change_reload</a></li>
+<li><a href="#7">SimpleHTTPServer_pyftpdlib</a></li>
+<li><a href="#8">f_ultimate</a></li>
+<li><a href="#9">ansi_color_print</a></li>
+<li><a href="#10">shell_sort</a></li>
+<li><a href="#11">bubble sort</a></li>
+<li><a href="#12">autocomplete_example</a></li>
+<li><a href="#13">aufbau</a></li>
+<li><a href="#14">MonitoTileX</a></li>
+<li><a href="#15">run_command</a></li>
+<li><a href="#16">quicksort</a></li>
 </ul>
 <br><br>
 <a id="0"></a>
@@ -233,6 +234,28 @@ f()<br>
 </pre>
 <a id="6"></a>
 <br><br>
+gtk_theme_change_reload<br>
+<pre>
+<code class=" language-python">import shutil
+import subprocess
+import os
+import tempfile
+
+"""Runs xsettingsd for a short time to reload gtk3 theme"""
+if shutil.which("xsettingsd"):
+    fd, path = tempfile.mkstemp()
+    try:
+        with os.fdopen(fd, 'w+') as tmp:
+            tmp.write('Net/ThemeName "Layan-dark"\n')
+            tmp.close()
+            subprocess.Popen.wait(subprocess.Popen(["timeout", "0.2s", "xsettingsd", "-c", path]))
+    finally:
+            os.remove(path)
+<br>
+</code>
+</pre>
+<a id="7"></a>
+<br><br>
 SimpleHTTPServer_pyftpdlib<br>
 <pre>
 <code class=" language-python">#  This is not actually a Python program
@@ -271,7 +294,7 @@ SimpleHTTPServer_pyftpdlib<br>
 <br>
 </code>
 </pre>
-<a id="7"></a>
+<a id="8"></a>
 <br><br>
 f_ultimate<br>
 <pre>
@@ -286,7 +309,7 @@ def f():
 f()<br>
 </code>
 </pre>
-<a id="8"></a>
+<a id="9"></a>
 <br><br>
 ansi_color_print<br>
 <pre>
@@ -300,7 +323,7 @@ ansi_color_print<br>
 <br>
 </code>
 </pre>
-<a id="9"></a>
+<a id="10"></a>
 <br><br>
 shell_sort<br>
 <pre>
@@ -333,7 +356,7 @@ def foo(l):
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
 </code>
 </pre>
-<a id="10"></a>
+<a id="11"></a>
 <br><br>
 bubble sort<br>
 <pre>
@@ -357,7 +380,7 @@ def foo(l):
 print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
 </code>
 </pre>
-<a id="11"></a>
+<a id="12"></a>
 <br><br>
 autocomplete_example<br>
 <pre>
@@ -381,7 +404,7 @@ while 1:
 <br>
 </code>
 </pre>
-<a id="12"></a>
+<a id="13"></a>
 <br><br>
 aufbau<br>
 <pre>
@@ -515,7 +538,7 @@ if __name__ == "__main__":
 <br>
 </code>
 </pre>
-<a id="13"></a>
+<a id="14"></a>
 <br><br>
 MonitoTileX<br>
 <pre>
@@ -675,23 +698,22 @@ mirror command (mirror <mon1> <mon2>)
 <br>
 </code>
 </pre>
-<a id="14"></a>
+<a id="15"></a>
 <br><br>
 run_command<br>
 <pre>
-<code class=" language-python">## Used to run commands input as a single string using "sh -c"
+<code class=" language-python"># Used to run commands input as a single string using "sh -c"
 
 def run(command):
-    from subprocess import PIPE,Popen
-    process=Popen(["sh","-c",command],stdout=PIPE,stderr=PIPE,text=True)
-    stdout,stderr=process.communicate()
-    exitcode=process.returncode
-    return {'stdout':stdout,'stderr':stderr,'exitcode':exitcode}
-
+    from subprocess import PIPE, Popen
+    process = Popen(["sh",  "-c", command], stdout=PIPE, stderr=PIPE, text is True)
+    stdout, stderr = process.communicate()
+    exitcode = process.returncode
+    return {'stdout': stdout, 'stderr': stderr, 'exitcode': exitcode}
 <br>
 </code>
 </pre>
-<a id="15"></a>
+<a id="16"></a>
 <br><br>
 quicksort<br>
 <pre>
