@@ -1,6 +1,7 @@
 import readline
 
-addrs = ['angela@domain.com', 'michael@domain.com', 'david@test.com']
+addrs = ["angela@domain.com", "michael@domain.com", "david@test.com"]
+
 
 def completer(text, state):
     options = [x for x in addrs if x.startswith(text)]
@@ -8,6 +9,7 @@ def completer(text, state):
         return options[state]
     except IndexError:
         return None
+
 
 readline.set_completer(completer)
 readline.parse_and_bind("tab: complete")

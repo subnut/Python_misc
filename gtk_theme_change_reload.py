@@ -7,9 +7,11 @@ import tempfile
 if shutil.which("xsettingsd"):
     fd, path = tempfile.mkstemp()
     try:
-        with os.fdopen(fd, 'w+') as tmp:
+        with os.fdopen(fd, "w+") as tmp:
             tmp.write('Net/ThemeName "Layan-dark"\n')
             tmp.close()
-            subprocess.Popen.wait(subprocess.Popen(["timeout", "0.2s", "xsettingsd", "-c", path]))
+            subprocess.Popen.wait(
+                subprocess.Popen(["timeout", "0.2s", "xsettingsd", "-c", path])
+            )
     finally:
-            os.remove(path)
+        os.remove(path)

@@ -50,10 +50,7 @@ Rounding off to next even number ..."""
         for current_energy in range(1, 2 * len(orbital_list) + 1):
             for current_orbit_energy in range(len(orbit_list)):
                 for current_orbital_energy in range(current_orbit_energy):
-                    if (
-                        current_orbit_energy + current_orbital_energy
-                        == current_energy
-                    ):
+                    if current_orbit_energy + current_orbital_energy == current_energy:
                         return_list.append(
                             orbit_list[current_orbit_energy]
                             + orbital_list[current_orbital_energy]
