@@ -63,7 +63,7 @@ def infix_postfix_boolean(input_infix):
     stack = ["("]
     table_list.append(["start", str(stack), output])
     for word in input_word_list:
-        if word not in ("NOT", "AND", "OR"):
+        if word not in ("NOT", "AND", "OR", "(", ")"):
             output += word + " "
         elif word in ("NOT", "AND", "OR", "(", ")"):
             if word == ")":
