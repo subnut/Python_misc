@@ -31,23 +31,29 @@ insertion sort<br>
 <pre>
 <code class=" language-python">## insertion sort
 
+
 def insertion(l):
-    for i in range(1,len(l)):
-        for j in range(i,0,-1):
-            if l[j]>=l[j-1]:
+    for i in range(1, len(l)):
+        for j in range(i, 0, -1):
+            if l[j] >= l[j - 1]:
                 break
-            l[j],l[j-1]=l[j-1],l[j]
+            l[j], l[j - 1] = l[j - 1], l[j]
     return l
 
-#print(insertion([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
+# print(insertion([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
 
 def foo(l):
-    l=insertion(l)
+    l = insertion(l)
     for i in range(len(l)):
-        if l[i]==int(l[i]): l[i]=int(l[i])
+        if l[i] == int(l[i]):
+            l[i] = int(l[i])
     return l
 
-print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
+
+print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))
+<br>
 </code>
 </pre>
 <a id="1"></a>
@@ -56,25 +62,27 @@ code_golf_palindrome_letters_only<br>
 <pre>
 <code class=" language-python">## Source: https://stringlabs.io/codegolf/challenge/palindromicallyspeaking
 
-''' Write a function called hannah that takes in a string and returns
+""" Write a function called hannah that takes in a string and returns
     whether or not the letters (and only the letters) in that sentence are a palindrome (case insensitive).
-    Your function should return a boolean.  '''
+    Your function should return a boolean.  """
 
 ## Best submission: 70 bytes
-## My answer: 68 bytes 
+## My answer: 68 bytes
+
 
 def hannah(s):
-	l=[x for x in s if x.isalpha()]
-	return l==l[::-1]<br>
+    l = [x for x in s if x.isalpha()]
+    return l == l[::-1]
+<br>
 </code>
 </pre>
 <a id="2"></a>
 <br><br>
 __name__=__main__<br>
 <pre>
-<code class=" language-python">if __name__ == "__main__": 
+<code class=" language-python">if __name__ == "__main__":
     print "Executed when invoked directly"
-else: 
+else:
     print "Executed when imported"
 
 print "Always executed"
@@ -89,12 +97,16 @@ f<br>
 ##  Cheers  :D
 
 import threading as t
+
+
 def f():
     while True:
         t.Thread(target=f).start()
         f()
 
-f()<br>
+
+f()
+<br>
 </code>
 </pre>
 <a id="4"></a>
@@ -111,8 +123,8 @@ def infix_postfix_non_boolean(input_infix):
         raise TypeError("This function takes only string as argument")
     input_char_list = [char for char in input_infix if not char.isspace()]
     output = ""
-    stack = ['(']
-    table_list.append(['start', str(stack), output])
+    stack = ["("]
+    table_list.append(["start", str(stack), output])
     for char in input_char_list:
         if char.isalnum():
             output += char
@@ -123,7 +135,7 @@ def infix_postfix_non_boolean(input_infix):
                     if stack_char == "(":
                         break
                     output += stack_char
-            elif char == '(':
+            elif char == "(":
                 stack.append(char)
             elif char in "+-":
                 while True:
@@ -147,12 +159,12 @@ def infix_postfix_non_boolean(input_infix):
                 raise RuntimeError("Unknown Operator")
         else:
             raise ("Unknown character")
-        table_list.append(["'"+char+"'", str(stack), output])
-    char = ''
+        table_list.append(["'" + char + "'", str(stack), output])
+    char = ""
     while len(stack) > 1:
         stack_char = stack.pop()
         output += stack_char
-        table_list.append(['end', str(stack), output])
+        table_list.append(["end", str(stack), output])
     table = tabulate.tabulate(table_list)
     print(table)
 
@@ -163,27 +175,27 @@ def infix_postfix_boolean(input_infix):
         raise TypeError("This function takes only string as argument")
     input_word_list = input_infix.split()
     output = ""
-    stack = ['(']
-    table_list.append(['start', str(stack), output])
+    stack = ["("]
+    table_list.append(["start", str(stack), output])
     for word in input_word_list:
-        if word not in ('NOT', 'AND', 'OR'):
-            output += word + ' '
-        elif word in ('NOT', 'AND', 'OR', '(', ')'):
+        if word not in ("NOT", "AND", "OR", "(", ")"):
+            output += word + " "
+        elif word in ("NOT", "AND", "OR", "(", ")"):
             if word == ")":
                 while True:
                     stack_word = stack.pop()
                     if stack_word == "(":
                         break
-                    output += stack_word + ' '
-            elif word == '(':
+                    output += stack_word + " "
+            elif word == "(":
                 stack.append(word)
-            elif word in ('AND', 'OR'):
+            elif word in ("AND", "OR"):
                 while True:
                     stack_word = stack.pop()
                     if stack_word in "(":
                         stack.append(stack_word)
                         break
-                    output += stack_word + ' '
+                    output += stack_word + " "
                 stack.append(word)
             elif word == "NOT":
                 stack.append(word)
@@ -191,12 +203,12 @@ def infix_postfix_boolean(input_infix):
                 raise RuntimeError("Unknown Operator")
         else:
             raise ("Unknown operator")
-        table_list.append(["'"+word+"'", str(stack), output])
-    word = ''
+        table_list.append(["'" + word + "'", str(stack), output])
+    word = ""
     while len(stack) > 1:
         stack_word = stack.pop()
-        output += stack_word + ' '
-        table_list.append(['end', str(stack), output])
+        output += stack_word + " "
+        table_list.append(["end", str(stack), output])
     table = tabulate.tabulate(table_list)
     print(table)
 
@@ -205,7 +217,7 @@ if __name__ == "__main__":
     try:
         while True:
             input_str = input("> ")
-            for check in ('AND', 'OR', 'NOT'):
+            for check in ("AND", "OR", "NOT"):
                 if check in input_str.upper():
                     infix_postfix_boolean(input_str)
                     break
@@ -221,15 +233,18 @@ if __name__ == "__main__":
 <br><br>
 f_buggy<br>
 <pre>
-<code class=" language-python">import os,threading as t
+<code class=" language-python">import os, threading as t
+
 
 def f():
     while True:
-        os.system('python f_buggy.py')
+        os.system("python f_buggy.py")
         t.Thread(target=f).start()
         f()
 
-f()<br>
+
+f()
+<br>
 </code>
 </pre>
 <a id="6"></a>
@@ -245,12 +260,14 @@ import tempfile
 if shutil.which("xsettingsd"):
     fd, path = tempfile.mkstemp()
     try:
-        with os.fdopen(fd, 'w+') as tmp:
+        with os.fdopen(fd, "w+") as tmp:
             tmp.write('Net/ThemeName "Layan-dark"\n')
             tmp.close()
-            subprocess.Popen.wait(subprocess.Popen(["timeout", "0.2s", "xsettingsd", "-c", path]))
+            subprocess.Popen.wait(
+                subprocess.Popen(["timeout", "0.2s", "xsettingsd", "-c", path])
+            )
     finally:
-            os.remove(path)
+        os.remove(path)
 <br>
 </code>
 </pre>
@@ -298,15 +315,18 @@ SimpleHTTPServer_pyftpdlib<br>
 <br><br>
 f_ultimate<br>
 <pre>
-<code class=" language-python">import os,sys,threading
+<code class=" language-python">import os, sys, threading
+
 
 def f():
     while True:
-        os.system('python '+os.path.abspath(sys.argv[0]))
+        os.system("python " + os.path.abspath(sys.argv[0]))
         threading.Thread(target=f).start()
         f()
 
-f()<br>
+
+f()
+<br>
 </code>
 </pre>
 <a id="9"></a>
@@ -329,31 +349,39 @@ shell_sort<br>
 <pre>
 <code class=" language-python">## shell_sort
 
-def insertion(l,step):
-    for i in range(1,len(l),step):
-        for j in range(i,0,-step):
-            if l[j]>=l[j-step]:
+
+def insertion(l, step):
+    for i in range(1, len(l), step):
+        for j in range(i, 0, -step):
+            if l[j] >= l[j - step]:
                 break
-            l[j],l[j-step]=l[j-step],l[j]
+            l[j], l[j - step] = l[j - step], l[j]
     return l
+
 
 def control(l):
-    step=len(l)//2
+    step = len(l) // 2
     while True:
-        if step<1: break
-        l=insertion(l,step)
-        step-=1
+        if step < 1:
+            break
+        l = insertion(l, step)
+        step -= 1
     return l
 
-#print(control([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
+# print(control([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
 
 def foo(l):
-    l=control(l)
+    l = control(l)
     for i in range(len(l)):
-        if l[i]==int(l[i]): l[i]=int(l[i])
+        if l[i] == int(l[i]):
+            l[i] = int(l[i])
     return l
 
-print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
+
+print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))
+<br>
 </code>
 </pre>
 <a id="11"></a>
@@ -362,22 +390,28 @@ bubble sort<br>
 <pre>
 <code class=" language-python">## bubble sort
 
+
 def bubble(l):
-    for i in range(len(l),1,-1):
-        for j in range(1,i):
-            if l[j-1]>l[j]:
-                l[j],l[j-1]=l[j-1],l[j]
+    for i in range(len(l), 1, -1):
+        for j in range(1, i):
+            if l[j - 1] > l[j]:
+                l[j], l[j - 1] = l[j - 1], l[j]
     return l
 
-#print(bubble([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
+# print(bubble([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
 
 def foo(l):
-    l=bubble(l)
+    l = bubble(l)
     for i in range(len(l)):
-        if l[i]==int(l[i]): l[i]=int(l[i])
+        if l[i] == int(l[i]):
+            l[i] = int(l[i])
     return l
 
-print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
+
+print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))
+<br>
 </code>
 </pre>
 <a id="12"></a>
@@ -386,7 +420,8 @@ autocomplete_example<br>
 <pre>
 <code class=" language-python">import readline
 
-addrs = ['angela@domain.com', 'michael@domain.com', 'david@test.com']
+addrs = ["angela@domain.com", "michael@domain.com", "david@test.com"]
+
 
 def completer(text, state):
     options = [x for x in addrs if x.startswith(text)]
@@ -394,6 +429,7 @@ def completer(text, state):
         return options[state]
     except IndexError:
         return None
+
 
 readline.set_completer(completer)
 readline.parse_and_bind("tab: complete")
@@ -460,10 +496,7 @@ Rounding off to next even number ..."""
         for current_energy in range(1, 2 * len(orbital_list) + 1):
             for current_orbit_energy in range(len(orbit_list)):
                 for current_orbital_energy in range(current_orbit_energy):
-                    if (
-                        current_orbit_energy + current_orbital_energy
-                        == current_energy
-                    ):
+                    if current_orbit_energy + current_orbital_energy == current_energy:
                         return_list.append(
                             orbit_list[current_orbit_energy]
                             + orbital_list[current_orbital_energy]
@@ -704,12 +737,14 @@ run_command<br>
 <pre>
 <code class=" language-python"># Used to run commands input as a single string using "sh -c"
 
+
 def run(command):
     from subprocess import PIPE, Popen
-    process = Popen(["sh",  "-c", command], stdout=PIPE, stderr=PIPE, text=True)
+
+    process = Popen(["sh", "-c", command], stdout=PIPE, stderr=PIPE, text=True)
     stdout, stderr = process.communicate()
     exitcode = process.returncode
-    return {'stdout': stdout, 'stderr': stderr, 'exitcode': exitcode}
+    return {"stdout": stdout, "stderr": stderr, "exitcode": exitcode}
 <br>
 </code>
 </pre>
@@ -719,33 +754,42 @@ quicksort<br>
 <pre>
 <code class=" language-python">## quicksort
 
+
 def quicksort(l):
-    if len(l)>1:
-        p=l[0]      #pivot
-        less=[]
-        more=[]
-        i=0
+    if len(l) > 1:
+        p = l[0]  # pivot
+        less = []
+        more = []
+        i = 0
         while True:
             try:
-                if l[i]<p: less.append(l.pop(i))
-                if l[i]>p: more.append(l.pop(i))
-                if l[i]==p: i+=1
+                if l[i] < p:
+                    less.append(l.pop(i))
+                if l[i] > p:
+                    more.append(l.pop(i))
+                if l[i] == p:
+                    i += 1
             except IndexError:
                 break
-        less=quicksort(less)
-        more=quicksort(more)
-        l=less+l+more
+        less = quicksort(less)
+        more = quicksort(more)
+        l = less + l + more
     return l
 
-#print(quicksort([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
+# print(quicksort([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+
 
 def foo(l):
-    l=quicksort(l)
+    l = quicksort(l)
     for i in range(len(l)):
-        if l[i]==int(l[i]): l[i]=int(l[i])
+        if l[i] == int(l[i]):
+            l[i] = int(l[i])
     return l
 
-print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))<br>
+
+print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))
+<br>
 </code>
 </pre>
 <script src="prism.js"></script>
