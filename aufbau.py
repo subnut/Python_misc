@@ -56,6 +56,8 @@ Rounding off to next even number ..."""
                             + orbital_list[current_orbital_energy]
                         )
                         break
+                    else:
+                        continue
                     break
         self.global_output = return_list
 
@@ -67,7 +69,7 @@ Rounding off to next even number ..."""
         for orbit in self.global_orbit_list:
             for orbital in self.global_output:
                 if orbital[:-1] == str(orbit):
-                    if len(self.global_orbit_list[-1]) > 1 & len(orbital) < 3:
+                    if (len(self.global_orbit_list[-1]) > 1) & (len(orbital) < 3):
                         print("0" + orbital, end=" ")
                     else:
                         print(orbital, end=" ")
@@ -119,6 +121,6 @@ if __name__ == "__main__":
     while True:
         try:
             main(user_object)
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, EOFError):
             print("\nExiting ...")
             break
