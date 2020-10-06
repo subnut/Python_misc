@@ -7,22 +7,23 @@
 <br>
 <ul>
 <li><a href="#0">insertion sort</a></li>
-<li><a href="#1">code_golf_palindrome_letters_only</a></li>
-<li><a href="#2">__name__=__main__</a></li>
-<li><a href="#3">f</a></li>
-<li><a href="#4">infix_to_postfix_new</a></li>
-<li><a href="#5">f_buggy</a></li>
-<li><a href="#6">gtk_theme_change_reload</a></li>
-<li><a href="#7">SimpleHTTPServer_pyftpdlib</a></li>
-<li><a href="#8">f_ultimate</a></li>
-<li><a href="#9">shell_sort</a></li>
-<li><a href="#10">bubble sort</a></li>
-<li><a href="#11">autocomplete_example</a></li>
-<li><a href="#12">aufbau</a></li>
-<li><a href="#13">MonitoTileX</a></li>
-<li><a href="#14">run_command</a></li>
-<li><a href="#15">check_if_port_occupied</a></li>
-<li><a href="#16">quicksort</a></li>
+<li><a href="#1">matrix_transpose</a></li>
+<li><a href="#2">code_golf_palindrome_letters_only</a></li>
+<li><a href="#3">__name__=__main__</a></li>
+<li><a href="#4">f</a></li>
+<li><a href="#5">infix_to_postfix_new</a></li>
+<li><a href="#6">f_buggy</a></li>
+<li><a href="#7">gtk_theme_change_reload</a></li>
+<li><a href="#8">SimpleHTTPServer_pyftpdlib</a></li>
+<li><a href="#9">f_ultimate</a></li>
+<li><a href="#10">shell_sort</a></li>
+<li><a href="#11">bubble sort</a></li>
+<li><a href="#12">autocomplete_example</a></li>
+<li><a href="#13">aufbau</a></li>
+<li><a href="#14">MonitoTileX</a></li>
+<li><a href="#15">run_command</a></li>
+<li><a href="#16">check_if_port_occupied</a></li>
+<li><a href="#17">quicksort</a></li>
 </ul>
 <br><br>
 <a id="0"></a>
@@ -58,6 +59,29 @@ print(foo([float(x) for x in input("Enter the values separated by spaces: ").spl
 </pre>
 <a id="1"></a>
 <br><br>
+matrix_transpose<br>
+<pre>
+<code class=" language-python">from typing import List
+
+
+def transpose(matrix: List[List]) -> List[List]:
+    _len_array: List[int] = []
+    for row in matrix:
+        _len_array.append(len(row))
+    if _len_array.count(_len_array[0]) != len(_len_array):
+        raise RuntimeError("Invalid Matrix")
+    matrix_new: List[List] = []
+    for column in range(len(matrix[0])):
+        _new_row: List = []
+        for row in matrix:
+            _new_row.append(row[column])
+        matrix_new.append(_new_row)
+    return matrix_new
+<br>
+</code>
+</pre>
+<a id="2"></a>
+<br><br>
 code_golf_palindrome_letters_only<br>
 <pre>
 <code class=" language-python">## Source: https://stringlabs.io/codegolf/challenge/palindromicallyspeaking
@@ -76,7 +100,7 @@ def hannah(s):
 <br>
 </code>
 </pre>
-<a id="2"></a>
+<a id="3"></a>
 <br><br>
 __name__=__main__<br>
 <pre>
@@ -89,7 +113,7 @@ print("Always executed")
 <br>
 </code>
 </pre>
-<a id="3"></a>
+<a id="4"></a>
 <br><br>
 f<br>
 <pre>
@@ -109,7 +133,7 @@ f()
 <br>
 </code>
 </pre>
-<a id="4"></a>
+<a id="5"></a>
 <br><br>
 infix_to_postfix_new<br>
 <pre>
@@ -229,7 +253,7 @@ if __name__ == "__main__":
 <br>
 </code>
 </pre>
-<a id="5"></a>
+<a id="6"></a>
 <br><br>
 f_buggy<br>
 <pre>
@@ -247,7 +271,7 @@ f()
 <br>
 </code>
 </pre>
-<a id="6"></a>
+<a id="7"></a>
 <br><br>
 gtk_theme_change_reload<br>
 <pre>
@@ -261,17 +285,29 @@ if shutil.which("xsettingsd"):
     fd, path = tempfile.mkstemp()
     try:
         with os.fdopen(fd, "w+") as tmp:
-            tmp.write('Net/ThemeName "Layan-dark"\n')
+            tmp.write(
+                """Net/DndDragThreshold 8
+Net/CursorBlinkTime 1200
+Net/ThemeName "Layan-dark"
+Net/DoubleClickTime 400
+Net/CursorBlink 1
+Net/FallbackIconTheme "gnome"
+Net/EnableEventSounds 1
+Net/IconThemeName "Tela-blue-dark"
+Net/SoundThemeName "freedesktop"
+Net/EnableInputFeedbackSounds 0
+"""
+            )
             tmp.close()
             subprocess.Popen.wait(
-                subprocess.Popen(["timeout", "0.2s", "xsettingsd", "-c", path])
+                subprocess.Popen(["timeout", "1s", "xsettingsd", "-c", path])
             )
     finally:
         os.remove(path)
 <br>
 </code>
 </pre>
-<a id="7"></a>
+<a id="8"></a>
 <br><br>
 SimpleHTTPServer_pyftpdlib<br>
 <pre>
@@ -311,7 +347,7 @@ SimpleHTTPServer_pyftpdlib<br>
 <br>
 </code>
 </pre>
-<a id="8"></a>
+<a id="9"></a>
 <br><br>
 f_ultimate<br>
 <pre>
@@ -329,7 +365,7 @@ f()
 <br>
 </code>
 </pre>
-<a id="9"></a>
+<a id="10"></a>
 <br><br>
 shell_sort<br>
 <pre>
@@ -370,7 +406,7 @@ print(foo([float(x) for x in input("Enter the values separated by spaces: ").spl
 <br>
 </code>
 </pre>
-<a id="10"></a>
+<a id="11"></a>
 <br><br>
 bubble sort<br>
 <pre>
@@ -400,7 +436,7 @@ print(foo([float(x) for x in input("Enter the values separated by spaces: ").spl
 <br>
 </code>
 </pre>
-<a id="11"></a>
+<a id="12"></a>
 <br><br>
 autocomplete_example<br>
 <pre>
@@ -426,7 +462,7 @@ while 1:
 <br>
 </code>
 </pre>
-<a id="12"></a>
+<a id="13"></a>
 <br><br>
 aufbau<br>
 <pre>
@@ -559,7 +595,7 @@ if __name__ == "__main__":
 <br>
 </code>
 </pre>
-<a id="13"></a>
+<a id="14"></a>
 <br><br>
 MonitoTileX<br>
 <pre>
@@ -719,7 +755,7 @@ mirror command (mirror <mon1> <mon2>)
 <br>
 </code>
 </pre>
-<a id="14"></a>
+<a id="15"></a>
 <br><br>
 run_command<br>
 <pre>
@@ -736,7 +772,7 @@ def run(command):
 <br>
 </code>
 </pre>
-<a id="15"></a>
+<a id="16"></a>
 <br><br>
 check_if_port_occupied<br>
 <pre>
@@ -748,7 +784,7 @@ check_if_port_occupied<br>
 <br>
 </code>
 </pre>
-<a id="16"></a>
+<a id="17"></a>
 <br><br>
 quicksort<br>
 <pre>
