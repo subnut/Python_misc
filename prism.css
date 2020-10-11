@@ -10,7 +10,7 @@ code[class*="language-"],
 pre[class*="language-"] {
 	color: #ccc;
 	background: none;
-	font-family: 'Cascadia Code', Monaco, Consolas, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-family: 'JetBrains Mono', 'Cascadia Code', Monaco, Consolas, 'Andale Mono', 'Ubuntu Mono', monospace;
 	font-size: 1em;
 	text-align: left;
 	white-space: pre;
