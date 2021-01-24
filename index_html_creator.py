@@ -1,5 +1,10 @@
-h = open("index.html", "w")
-h.write(
+from os import listdir
+from html import escape
+
+
+html_file = open("index.html", "w")
+
+html_file.write(
     """<html>
 <head>
 <title>Python_misc</title>
@@ -11,11 +16,13 @@ h.write(
 
 def contents(f):
     with open(f, "r") as file:
-        return file.readlines()
+        return file.read()
 
 
 """
- Note that in the above function I have used "with open" instead of the normal file=open(...)
+ Note that in the above function I have used "with open" instead of the normal
+ file=open(...)
+
  I could have used the following code:
 
       def contents(f):
@@ -40,44 +47,43 @@ def contents(f):
  It ensures that the file being opened is gracefully closed
 """
 
-from os import listdir
 
-l = [x for x in listdir(".") if (x[-3:] == ".py" and x != "index_html_creator.py")]
+file_list = [x for x in listdir(".") if x[-3:] == ".py"]
 
-h.write("<br>\n")
+html_file.write("<br>\n")
 
-h.write("<ul>\n")
-for a in range(
-    len(l)
-):  # I am using numbers as link-id because filenames may have spaces, which are not allowed
-    h.write("<li>")
-    h.write('<a href="#' + str(a) + '">' + l[a][:-3] + "</a>")
-    h.write("</li>\n")
-h.write("</ul>\n")
+html_file.write("<ul>\n")
+# I am using numbers as link-id because filenames may have spaces, which are
+# not allowed
+for a in range(len(file_list)):
+    html_file.write("<li>")
+    html_file.write('<a href="#' + str(a) + '">' + file_list[a][:-3] + "</a>")
+    html_file.write("</li>\n")
+html_file.write("</ul>\n")
 
-h.write("<br><br>\n")
+html_file.write("<br><br>\n")
 
 id = -1
 
-for z in l:
+for file in file_list:
     id += 1
-    h.write('<a id="' + str(id) + '"></a>\n')
-    h.write("<br><br>\n")
-    h.write(z[:-3] + "<br>\n")
-    h.write(
+    html_file.write('<a id="' + str(id) + '"></a>\n')
+    html_file.write("<br><br>\n")
+    html_file.write(file[:-3] + "<br>\n")
+    html_file.write(
         """<pre>
 <code class=" language-python">"""
     )
-    h.writelines(contents(z))
-    h.write(
+    html_file.write(escape(contents(file)))
+    html_file.write(
         """<br>
 </code>
 </pre>\n"""
     )
 
-h.write(
+html_file.write(
     """<script src="prism.js"></script>
 </body>
 </html>"""
 )
-h.close()
+html_file.close()

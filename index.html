@@ -24,6 +24,7 @@
 <li><a href="#15">run_command</a></li>
 <li><a href="#16">check_if_port_occupied</a></li>
 <li><a href="#17">quicksort</a></li>
+<li><a href="#18">index_html_creator</a></li>
 </ul>
 <br><br>
 <a id="0"></a>
@@ -36,13 +37,13 @@ insertion sort<br>
 def insertion(l):
     for i in range(1, len(l)):
         for j in range(i, 0, -1):
-            if l[j] >= l[j - 1]:
+            if l[j] &gt;= l[j - 1]:
                 break
             l[j], l[j - 1] = l[j - 1], l[j]
     return l
 
 
-# print(insertion([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+# print(insertion([int(x) for x in input(&quot;Enter the list of numbers separated by spaces: &quot;).split()]))
 
 
 def foo(l):
@@ -53,7 +54,7 @@ def foo(l):
     return l
 
 
-print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))
+print(foo([float(x) for x in input(&quot;Enter the values separated by spaces: &quot;).split()]))
 <br>
 </code>
 </pre>
@@ -64,12 +65,12 @@ matrix_transpose<br>
 <code class=" language-python">from typing import List
 
 
-def transpose(matrix: List[List]) -> List[List]:
+def transpose(matrix: List[List]) -&gt; List[List]:
     _len_array: List[int] = []
     for row in matrix:
         _len_array.append(len(row))
     if _len_array.count(_len_array[0]) != len(_len_array):
-        raise RuntimeError("Invalid Matrix")
+        raise RuntimeError(&quot;Invalid Matrix&quot;)
     matrix_new: List[List] = []
     for column in range(len(matrix[0])):
         _new_row: List = []
@@ -86,9 +87,9 @@ code_golf_palindrome_letters_only<br>
 <pre>
 <code class=" language-python">## Source: https://stringlabs.io/codegolf/challenge/palindromicallyspeaking
 
-""" Write a function called hannah that takes in a string and returns
+&quot;&quot;&quot; Write a function called hannah that takes in a string and returns
     whether or not the letters (and only the letters) in that sentence are a palindrome (case insensitive).
-    Your function should return a boolean.  """
+    Your function should return a boolean.  &quot;&quot;&quot;
 
 ## Best submission: 70 bytes
 ## My answer: 68 bytes
@@ -104,12 +105,12 @@ def hannah(s):
 <br><br>
 __name__=__main__<br>
 <pre>
-<code class=" language-python">if __name__ == "__main__":
-    print("Executed when invoked directly")
+<code class=" language-python">if __name__ == &quot;__main__&quot;:
+    print(&quot;Executed when invoked directly&quot;)
 else:
-    print("Executed when imported")
+    print(&quot;Executed when imported&quot;)
 
-print("Always executed")
+print(&quot;Always executed&quot;)
 <br>
 </code>
 </pre>
@@ -144,51 +145,51 @@ import tabulate
 def infix_postfix_non_boolean(input_infix):
     table_list = []
     if not isinstance(input_infix, str):
-        raise TypeError("This function takes only string as argument")
+        raise TypeError(&quot;This function takes only string as argument&quot;)
     input_char_list = [char for char in input_infix if not char.isspace()]
-    output = ""
-    stack = ["("]
-    table_list.append(["start", str(stack), output])
+    output = &quot;&quot;
+    stack = [&quot;(&quot;]
+    table_list.append([&quot;start&quot;, str(stack), output])
     for char in input_char_list:
         if char.isalnum():
             output += char
-        elif char in "()*^/+-":
-            if char == ")":
+        elif char in &quot;()*^/+-&quot;:
+            if char == &quot;)&quot;:
                 while True:
                     stack_char = stack.pop()
-                    if stack_char == "(":
+                    if stack_char == &quot;(&quot;:
                         break
                     output += stack_char
-            elif char == "(":
+            elif char == &quot;(&quot;:
                 stack.append(char)
-            elif char in "+-":
+            elif char in &quot;+-&quot;:
                 while True:
                     stack_char = stack.pop()
-                    if stack_char == "(":
+                    if stack_char == &quot;(&quot;:
                         stack.append(stack_char)
                         break
                     output += stack_char
                 stack.append(char)
-            elif char in "*/":
+            elif char in &quot;*/&quot;:
                 while True:
                     stack_char = stack.pop()
-                    if stack_char in "(+-":
+                    if stack_char in &quot;(+-&quot;:
                         stack.append(stack_char)
                         break
                     output += stack_char
                 stack.append(char)
-            elif char in "^":
+            elif char in &quot;^&quot;:
                 stack.append(char)
             else:
-                raise RuntimeError("Unknown Operator")
+                raise RuntimeError(&quot;Unknown Operator&quot;)
         else:
-            raise ("Unknown character")
-        table_list.append(["'" + char + "'", str(stack), output])
-    char = ""
-    while len(stack) > 1:
+            raise (&quot;Unknown character&quot;)
+        table_list.append([&quot;&#x27;&quot; + char + &quot;&#x27;&quot;, str(stack), output])
+    char = &quot;&quot;
+    while len(stack) &gt; 1:
         stack_char = stack.pop()
         output += stack_char
-        table_list.append(["end", str(stack), output])
+        table_list.append([&quot;end&quot;, str(stack), output])
     table = tabulate.tabulate(table_list)
     print(table)
 
@@ -196,52 +197,52 @@ def infix_postfix_non_boolean(input_infix):
 def infix_postfix_boolean(input_infix):
     table_list = []
     if not isinstance(input_infix, str):
-        raise TypeError("This function takes only string as argument")
+        raise TypeError(&quot;This function takes only string as argument&quot;)
     input_word_list = input_infix.split()
-    output = ""
-    stack = ["("]
-    table_list.append(["start", str(stack), output])
+    output = &quot;&quot;
+    stack = [&quot;(&quot;]
+    table_list.append([&quot;start&quot;, str(stack), output])
     for word in input_word_list:
-        if word not in ("NOT", "AND", "OR", "(", ")"):
-            output += word + " "
-        elif word in ("NOT", "AND", "OR", "(", ")"):
-            if word == ")":
+        if word not in (&quot;NOT&quot;, &quot;AND&quot;, &quot;OR&quot;, &quot;(&quot;, &quot;)&quot;):
+            output += word + &quot; &quot;
+        elif word in (&quot;NOT&quot;, &quot;AND&quot;, &quot;OR&quot;, &quot;(&quot;, &quot;)&quot;):
+            if word == &quot;)&quot;:
                 while True:
                     stack_word = stack.pop()
-                    if stack_word == "(":
+                    if stack_word == &quot;(&quot;:
                         break
-                    output += stack_word + " "
-            elif word == "(":
+                    output += stack_word + &quot; &quot;
+            elif word == &quot;(&quot;:
                 stack.append(word)
-            elif word in ("AND", "OR"):
+            elif word in (&quot;AND&quot;, &quot;OR&quot;):
                 while True:
                     stack_word = stack.pop()
-                    if stack_word in "(":
+                    if stack_word in &quot;(&quot;:
                         stack.append(stack_word)
                         break
-                    output += stack_word + " "
+                    output += stack_word + &quot; &quot;
                 stack.append(word)
-            elif word == "NOT":
+            elif word == &quot;NOT&quot;:
                 stack.append(word)
             else:
-                raise RuntimeError("Unknown Operator")
+                raise RuntimeError(&quot;Unknown Operator&quot;)
         else:
-            raise ("Unknown operator")
-        table_list.append(["'" + word + "'", str(stack), output])
-    word = ""
-    while len(stack) > 1:
+            raise (&quot;Unknown operator&quot;)
+        table_list.append([&quot;&#x27;&quot; + word + &quot;&#x27;&quot;, str(stack), output])
+    word = &quot;&quot;
+    while len(stack) &gt; 1:
         stack_word = stack.pop()
-        output += stack_word + " "
-        table_list.append(["end", str(stack), output])
+        output += stack_word + &quot; &quot;
+        table_list.append([&quot;end&quot;, str(stack), output])
     table = tabulate.tabulate(table_list)
     print(table)
 
 
-if __name__ == "__main__":
+if __name__ == &quot;__main__&quot;:
     try:
         while True:
-            input_str = input("> ")
-            for check in ("AND", "OR", "NOT"):
+            input_str = input(&quot;&gt; &quot;)
+            for check in (&quot;AND&quot;, &quot;OR&quot;, &quot;NOT&quot;):
                 if check in input_str.upper():
                     infix_postfix_boolean(input_str)
                     break
@@ -262,7 +263,7 @@ f_buggy<br>
 
 def f():
     while True:
-        os.system("python f_buggy.py")
+        os.system(&quot;python f_buggy.py&quot;)
         t.Thread(target=f).start()
         f()
 
@@ -280,27 +281,27 @@ import subprocess
 import os
 import tempfile
 
-"""Runs xsettingsd for a short time to reload gtk3 theme"""
-if shutil.which("xsettingsd"):
+&quot;&quot;&quot;Runs xsettingsd for a short time to reload gtk3 theme&quot;&quot;&quot;
+if shutil.which(&quot;xsettingsd&quot;):
     fd, path = tempfile.mkstemp()
     try:
-        with os.fdopen(fd, "w+") as tmp:
+        with os.fdopen(fd, &quot;w+&quot;) as tmp:
             tmp.write(
-                """Net/DndDragThreshold 8
+                &quot;&quot;&quot;Net/DndDragThreshold 8
 Net/CursorBlinkTime 1200
-Net/ThemeName "Layan-dark"
+Net/ThemeName &quot;Layan-dark&quot;
 Net/DoubleClickTime 400
 Net/CursorBlink 1
-Net/FallbackIconTheme "gnome"
+Net/FallbackIconTheme &quot;gnome&quot;
 Net/EnableEventSounds 1
-Net/IconThemeName "Tela-blue-dark"
-Net/SoundThemeName "freedesktop"
+Net/IconThemeName &quot;Tela-blue-dark&quot;
+Net/SoundThemeName &quot;freedesktop&quot;
 Net/EnableInputFeedbackSounds 0
-"""
+&quot;&quot;&quot;
             )
             tmp.close()
             subprocess.Popen.wait(
-                subprocess.Popen(["timeout", "1s", "xsettingsd", "-c", path])
+                subprocess.Popen([&quot;timeout&quot;, &quot;1s&quot;, &quot;xsettingsd&quot;, &quot;-c&quot;, path])
             )
     finally:
         os.remove(path)
@@ -332,7 +333,7 @@ SimpleHTTPServer_pyftpdlib<br>
 #  Simple way to quickly send some files :D
 #
 #  P.S. For sending larger files,
-#  it is better to use a server having 'range' support
+#  it is better to use a server having &#x27;range&#x27; support
 #  So, do this -
 #       pip install rangehttpserver
 #  Then, run - python -m RangeHTTPServer
@@ -356,7 +357,7 @@ f_ultimate<br>
 
 def f():
     while True:
-        os.system("python " + os.path.abspath(sys.argv[0]))
+        os.system(&quot;python &quot; + os.path.abspath(sys.argv[0]))
         threading.Thread(target=f).start()
         f()
 
@@ -375,7 +376,7 @@ shell_sort<br>
 def insertion(l, step):
     for i in range(1, len(l), step):
         for j in range(i, 0, -step):
-            if l[j] >= l[j - step]:
+            if l[j] &gt;= l[j - step]:
                 break
             l[j], l[j - step] = l[j - step], l[j]
     return l
@@ -384,14 +385,14 @@ def insertion(l, step):
 def control(l):
     step = len(l) // 2
     while True:
-        if step < 1:
+        if step &lt; 1:
             break
         l = insertion(l, step)
         step -= 1
     return l
 
 
-# print(control([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+# print(control([int(x) for x in input(&quot;Enter the list of numbers separated by spaces: &quot;).split()]))
 
 
 def foo(l):
@@ -402,7 +403,7 @@ def foo(l):
     return l
 
 
-print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))
+print(foo([float(x) for x in input(&quot;Enter the values separated by spaces: &quot;).split()]))
 <br>
 </code>
 </pre>
@@ -416,12 +417,12 @@ bubble sort<br>
 def bubble(l):
     for i in range(len(l), 1, -1):
         for j in range(1, i):
-            if l[j - 1] > l[j]:
+            if l[j - 1] &gt; l[j]:
                 l[j], l[j - 1] = l[j - 1], l[j]
     return l
 
 
-# print(bubble([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+# print(bubble([int(x) for x in input(&quot;Enter the list of numbers separated by spaces: &quot;).split()]))
 
 
 def foo(l):
@@ -432,7 +433,7 @@ def foo(l):
     return l
 
 
-print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))
+print(foo([float(x) for x in input(&quot;Enter the values separated by spaces: &quot;).split()]))
 <br>
 </code>
 </pre>
@@ -442,7 +443,7 @@ autocomplete_example<br>
 <pre>
 <code class=" language-python">import readline
 
-addrs = ["angela@domain.com", "michael@domain.com", "david@test.com"]
+addrs = [&quot;angela@domain.com&quot;, &quot;michael@domain.com&quot;, &quot;david@test.com&quot;]
 
 
 def completer(text, state):
@@ -454,11 +455,11 @@ def completer(text, state):
 
 
 readline.set_completer(completer)
-readline.parse_and_bind("tab: complete")
+readline.parse_and_bind(&quot;tab: complete&quot;)
 
 while 1:
-    a = input("> ")
-    print("You entered", a)
+    a = input(&quot;&gt; &quot;)
+    print(&quot;You entered&quot;, a)
 <br>
 </code>
 </pre>
@@ -486,7 +487,7 @@ class Aufbau:
             try:
                 orbital_list = self.global_orbital_list
             except NameError:
-                raise NameError("Orbital list not defined")
+                raise NameError(&quot;Orbital list not defined&quot;)
         orbit_list = [None]
         for orbit_no in range(1, 2 * len(orbital_list) + 1):
             orbit_list.append(str(orbit_no))
@@ -498,17 +499,17 @@ class Aufbau:
             try:
                 last_orbit = self.global_last_orbit
             except NameError:
-                raise NameError("Last orbit number not specified")
+                raise NameError(&quot;Last orbit number not specified&quot;)
         if last_orbit not in range(1, 25):
-            print("Last orbit must be an integer from 1 to 24")
+            print(&quot;Last orbit must be an integer from 1 to 24&quot;)
             return
         if last_orbit % 2 != 0:
             print(
-                """WARNING: Provided outermost orbital number is odd
-Rounding off to next even number ..."""
+                &quot;&quot;&quot;WARNING: Provided outermost orbital number is odd
+Rounding off to next even number ...&quot;&quot;&quot;
             )
         last_orbit = (last_orbit + 1) // 2
-        self.global_orbital_list = "spdfghijklmnopqrstuvwxyz"[:last_orbit]
+        self.global_orbital_list = &quot;spdfghijklmnopqrstuvwxyz&quot;[:last_orbit]
         self.generate_from_orbital_list()
 
     def generate_output(self):
@@ -537,60 +538,60 @@ Rounding off to next even number ..."""
         for orbit in self.global_orbit_list:
             for orbital in self.global_output:
                 if orbital[:-1] == str(orbit):
-                    if (len(self.global_orbit_list[-1]) > 1) & (len(orbital) < 3):
-                        print("0" + orbital, end=" ")
+                    if (len(self.global_orbit_list[-1]) &gt; 1) &amp; (len(orbital) &lt; 3):
+                        print(&quot;0&quot; + orbital, end=&quot; &quot;)
                     else:
-                        print(orbital, end=" ")
-            if orbit and int(orbit) > len(self.global_orbital_list):
-                print("...", end=" ")
+                        print(orbital, end=&quot; &quot;)
+            if orbit and int(orbit) &gt; len(self.global_orbital_list):
+                print(&quot;...&quot;, end=&quot; &quot;)
             print()
         print()
 
 
 def main(user_object):
     print(
-        """What do you have?
+        &quot;&quot;&quot;What do you have?
 1. Orbital List
-2. Last Orbit number"""
+2. Last Orbit number&quot;&quot;&quot;
     )
-    user_input = input("Enter your option: ")
-    if user_input not in ("1", "2"):
-        print("Invalid option!")
+    user_input = input(&quot;Enter your option: &quot;)
+    if user_input not in (&quot;1&quot;, &quot;2&quot;):
+        print(&quot;Invalid option!&quot;)
         return
-    if user_input == "1":
+    if user_input == &quot;1&quot;:
         user_input = input(
-            "Please enter the order of the orbitals WITHOUT whitespace: "
+            &quot;Please enter the order of the orbitals WITHOUT whitespace: &quot;
         )
-    elif user_input == "2":
-        user_input = input("Please enter the last orbit number: ")
+    elif user_input == &quot;2&quot;:
+        user_input = input(&quot;Please enter the last orbit number: &quot;)
         if not user_input.isalnum():
-            print("Invalid number")
+            print(&quot;Invalid number&quot;)
             return
         user_input = int(user_input)
     user_object.update_input(user_input)
     print(
-        """What do you want to print?
+        &quot;&quot;&quot;What do you want to print?
 1. Aufbau Chart
-2. Aufbau List"""
+2. Aufbau List&quot;&quot;&quot;
     )
-    user_input = input("Enter your option: ")
-    if user_input not in ("1", "2"):
-        print("Invalid option!")
+    user_input = input(&quot;Enter your option: &quot;)
+    if user_input not in (&quot;1&quot;, &quot;2&quot;):
+        print(&quot;Invalid option!&quot;)
         return
-    if user_input == "1":
+    if user_input == &quot;1&quot;:
         user_object.print_chart()
-    elif user_input == "2":
+    elif user_input == &quot;2&quot;:
         user_object.print_list()
 
 
-if __name__ == "__main__":
+if __name__ == &quot;__main__&quot;:
     user_object = Aufbau()
-    print("To quit, press Ctrl-C anytime")
+    print(&quot;To quit, press Ctrl-C anytime&quot;)
     while True:
         try:
             main(user_object)
         except (KeyboardInterrupt, EOFError):
-            print("\nExiting ...")
+            print(&quot;\nExiting ...&quot;)
             break
 <br>
 </code>
@@ -604,47 +605,47 @@ MonitoTileX<br>
 
 def run(command):
     from subprocess import PIPE,Popen
-    process=Popen(["sh","-c",command],stdout=PIPE,stderr=PIPE,text=True)
+    process=Popen([&quot;sh&quot;,&quot;-c&quot;,command],stdout=PIPE,stderr=PIPE,text=True)
     stdout,stderr=process.communicate()
     exitcode=process.returncode
-    return {'stdout':stdout,'stderr':stderr,'exitcode':exitcode}
+    return {&#x27;stdout&#x27;:stdout,&#x27;stderr&#x27;:stderr,&#x27;exitcode&#x27;:exitcode}
 
 def get_loginid():
-    for string in run("loginctl")['stdout'].lower().split('\n'):
-        if string.find(getlogin()) != -1 & string.find("tty") == -1:
+    for string in run(&quot;loginctl&quot;)[&#x27;stdout&#x27;].lower().split(&#x27;\n&#x27;):
+        if string.find(getlogin()) != -1 &amp; string.find(&quot;tty&quot;) == -1:
             return string.split()[0]
     else:
-        print("No non-tty logins of this user has been found. Please login into a X session.")
+        print(&quot;No non-tty logins of this user has been found. Please login into a X session.&quot;)
         exit(1)
 
 def get_session_type():
-    return run("loginctl show-session "+get_loginid()+" -p Type")['stdout'].split('=')[1].split('\n')[0]
+    return run(&quot;loginctl show-session &quot;+get_loginid()+&quot; -p Type&quot;)[&#x27;stdout&#x27;].split(&#x27;=&#x27;)[1].split(&#x27;\n&#x27;)[0]
 
 def check_xrandr():
-    xrandr_code = run("xrandr")['exitcode']
+    xrandr_code = run(&quot;xrandr&quot;)[&#x27;exitcode&#x27;]
     if xrandr_code == 0: return True
-    elif xrandr_code == 127: print("command 'xrandr' not found \nPlease install the package which includes this command")
-    elif xrandr_code == 1: print("xrandr exited with exit code 1\nAre you on a X session? This program only runs inside an X session")
-    else: print("Unknown error while running 'xrandr'")
+    elif xrandr_code == 127: print(&quot;command &#x27;xrandr&#x27; not found \nPlease install the package which includes this command&quot;)
+    elif xrandr_code == 1: print(&quot;xrandr exited with exit code 1\nAre you on a X session? This program only runs inside an X session&quot;)
+    else: print(&quot;Unknown error while running &#x27;xrandr&#x27;&quot;)
     exit(1)
 
 def check_readline():
     try: import readline
     except ModuleNotFoundError:
-        exitcode = run("python -m pip install readline")['exitcode']
-        if exitcode != 0: print("Module 'readline' was not found. Please install."); exit(1); return False
+        exitcode = run(&quot;python -m pip install readline&quot;)[&#x27;exitcode&#x27;]
+        if exitcode != 0: print(&quot;Module &#x27;readline&#x27; was not found. Please install.&quot;); exit(1); return False
     return True
 
 def check():
-   if (tuple(version_info)[0]==3) & (platform=='linux') & (get_session_type()=='x11') & check_xrandr() & check_readline():
+   if (tuple(version_info)[0]==3) &amp; (platform==&#x27;linux&#x27;) &amp; (get_session_type()==&#x27;x11&#x27;) &amp; check_xrandr() &amp; check_readline():
         return True
    else:
-        if tuple(version_info)[0]!=3: print("Python v3 needed")
-        elif platform != 'linux': print("Only linux is supported")
-        elif get_session_type()=='wayland': print("Wayland is not supported")
-        elif get_session_type()!="x11": print("Needs X11 session")
+        if tuple(version_info)[0]!=3: print(&quot;Python v3 needed&quot;)
+        elif platform != &#x27;linux&#x27;: print(&quot;Only linux is supported&quot;)
+        elif get_session_type()==&#x27;wayland&#x27;: print(&quot;Wayland is not supported&quot;)
+        elif get_session_type()!=&quot;x11&quot;: print(&quot;Needs X11 session&quot;)
         elif not check_xrandr(): pass
-        else: print("Unknown error")
+        else: print(&quot;Unknown error&quot;)
         return False
 
 
@@ -652,14 +653,14 @@ def my_completer_helper(inputText,commands,loopState):
     matchList = [x for x in commands if x.startswith(inputText)]
 
     if len(matchList)==0:
-        if loopState > 0: return None
+        if loopState &gt; 0: return None
         for l in range(1,len(inputText)):
             matches = [x for x in commands if x.startswith(inputText[:-l])]
-            if len(matches) > 0:
-                return matches[0]+' '
+            if len(matches) &gt; 0:
+                return matches[0]+&#x27; &#x27;
 
     if len(matchList)==1:
-        if loopState==0: return matchList[0]+' '
+        if loopState==0: return matchList[0]+&#x27; &#x27;
         else: return None
 
     else:
@@ -670,30 +671,30 @@ def my_completer_helper(inputText,commands,loopState):
 
 
 def my_completer_function(inputText, loopState):
-    firstCommands = ['do','orient','status','quit']
-    monitors = [ x for x in run("xrandr -q | grep ' connected' | cut -d' ' -f1")['stdout'].split('\n') if len(x) > 0 ]
-    directionOf = [ 'left', 'right', 'top', 'bottom' ]
+    firstCommands = [&#x27;do&#x27;,&#x27;orient&#x27;,&#x27;status&#x27;,&#x27;quit&#x27;]
+    monitors = [ x for x in run(&quot;xrandr -q | grep &#x27; connected&#x27; | cut -d&#x27; &#x27; -f1&quot;)[&#x27;stdout&#x27;].split(&#x27;\n&#x27;) if len(x) &gt; 0 ]
+    directionOf = [ &#x27;left&#x27;, &#x27;right&#x27;, &#x27;top&#x27;, &#x27;bottom&#x27; ]
     alignTo = {
-                'left':('top', 'bottom'),
-                'right':('top', 'bottom'),
-                'top':('left', 'right'),
-                'bottom':('left', 'right')
+                &#x27;left&#x27;:(&#x27;top&#x27;, &#x27;bottom&#x27;),
+                &#x27;right&#x27;:(&#x27;top&#x27;, &#x27;bottom&#x27;),
+                &#x27;top&#x27;:(&#x27;left&#x27;, &#x27;right&#x27;),
+                &#x27;bottom&#x27;:(&#x27;left&#x27;, &#x27;right&#x27;)
               }
-    if inputText.count(' ') == 0:
+    if inputText.count(&#x27; &#x27;) == 0:
         return my_completer_helper(inputText,firstCommands,loopState)
-    if inputText.count(' ') == 1:
+    if inputText.count(&#x27; &#x27;) == 1:
         firstCommand = inputText.split()[0]
         availableCommands =
         return my_completer_helper(,monitors,loopState)
 
 
 def currentlyConnected(monitors):
-    return "Currently connected monitors are: "+monitorListToString(monitors)
+    return &quot;Currently connected monitors are: &quot;+monitorListToString(monitors)
 
 def monitorListToString(monitors):
-    monitorString = ""
+    monitorString = &quot;&quot;
     for x in monitors:
-        monitorString += x + " "
+        monitorString += x + &quot; &quot;
     return monitorString
 
 
@@ -701,36 +702,36 @@ def monitorListToString(monitors):
 
 
 def main_loop():
-    userInput = input('\n> ')
-    monitors = [ x for x in run("xrandr -q | grep ' connected' | cut -d' ' -f1")['stdout'].split('\n') if len(x) > 0 ]
+    userInput = input(&#x27;\n&gt; &#x27;)
+    monitors = [ x for x in run(&quot;xrandr -q | grep &#x27; connected&#x27; | cut -d&#x27; &#x27; -f1&quot;)[&#x27;stdout&#x27;].split(&#x27;\n&#x27;) if len(x) &gt; 0 ]
 
 
 
-    if userInput == "status":
+    if userInput == &quot;status&quot;:
         print(currentlyConnected(monitors))
-    if userInput in ("quit","q"):
+    if userInput in (&quot;quit&quot;,&quot;q&quot;):
         return False
     return True
 
 def main():
-    if not check(): print("Unknown Error"); exit(1); return False
+    if not check(): print(&quot;Unknown Error&quot;); exit(1); return False
     import readline
     readline.set_completer(my_completer_function)
-    readline.parse_and_bind("tab: complete")
-    monitors = [ x for x in run("xrandr -q | grep ' connected' | cut -d' ' -f1")['stdout'].split('\n') if len(x) > 0 ]
-    print("""Welcome to Monitotilex!
-Enter 'q' or 'quit' to exit
+    readline.parse_and_bind(&quot;tab: complete&quot;)
+    monitors = [ x for x in run(&quot;xrandr -q | grep &#x27; connected&#x27; | cut -d&#x27; &#x27; -f1&quot;)[&#x27;stdout&#x27;].split(&#x27;\n&#x27;) if len(x) &gt; 0 ]
+    print(&quot;&quot;&quot;Welcome to Monitotilex!
+Enter &#x27;q&#x27; or &#x27;quit&#x27; to exit
 {}
-To get this list of connected monitors, run 'status' anytime
+To get this list of connected monitors, run &#x27;status&#x27; anytime
 
 Valid commands are of the syntax:
-    do <monitor-name-1> <left|right|top|bottom> <monitor-name-2> <aligned-to-side>
-    orient <monitor-name> <normal|left-side-down|right-side-down|upside-down>
+    do &lt;monitor-name-1&gt; &lt;left|right|top|bottom&gt; &lt;monitor-name-2&gt; &lt;aligned-to-side&gt;
+    orient &lt;monitor-name&gt; &lt;normal|left-side-down|right-side-down|upside-down&gt;
 And are interpreted as:
-    <monitor-name-1> is <left|right|top|bottom> of <monitor-name-2> and aligned to the <aligned-to-side> side of <monitor-name-2>
-    <monitor-name> has been kept in the position <normal|left-side-down|right-side-down|upside-down>. So adjust the display accordingly.
+    &lt;monitor-name-1&gt; is &lt;left|right|top|bottom&gt; of &lt;monitor-name-2&gt; and aligned to the &lt;aligned-to-side&gt; side of &lt;monitor-name-2&gt;
+    &lt;monitor-name&gt; has been kept in the position &lt;normal|left-side-down|right-side-down|upside-down&gt;. So adjust the display accordingly.
 
-P.S.: Tab-completion is available at every step""".format(currentlyConnected(monitors)))
+P.S.: Tab-completion is available at every step&quot;&quot;&quot;.format(currentlyConnected(monitors)))
     loop = True
     while loop:
         loop = main_loop()
@@ -740,18 +741,18 @@ P.S.: Tab-completion is available at every step""".format(currentlyConnected(mon
 
 
 try: from sys import version_info,platform; from os import getlogin
-except ModuleNotFoundError: print("Please ensure that the following modules are available:\nsys, os"); exit(1)
+except ModuleNotFoundError: print(&quot;Please ensure that the following modules are available:\nsys, os&quot;); exit(1)
 else: pass
 
-if (__name__=="__main__") & check(): main()
+if (__name__==&quot;__main__&quot;) &amp; check(): main()
 
 
 # To-do
-""" wrong command -> suggest
-command interpreter -> input().split()
+&quot;&quot;&quot; wrong command -&gt; suggest
+command interpreter -&gt; input().split()
 main logic
-mirror command (mirror <mon1> <mon2>)
-"""
+mirror command (mirror &lt;mon1&gt; &lt;mon2&gt;)
+&quot;&quot;&quot;
 <br>
 </code>
 </pre>
@@ -759,16 +760,16 @@ mirror command (mirror <mon1> <mon2>)
 <br><br>
 run_command<br>
 <pre>
-<code class=" language-python"># Used to run commands input as a single string using "sh -c"
+<code class=" language-python"># Used to run commands input as a single string using &quot;sh -c&quot;
 
 
 def run(command):
     from subprocess import PIPE, Popen
 
-    process = Popen(["sh", "-c", command], stdout=PIPE, stderr=PIPE, text=True)
+    process = Popen([&quot;sh&quot;, &quot;-c&quot;, command], stdout=PIPE, stderr=PIPE, text=True)
     stdout, stderr = process.communicate()
     exitcode = process.returncode
-    return {"stdout": stdout, "stderr": stderr, "exitcode": exitcode}
+    return {&quot;stdout&quot;: stdout, &quot;stderr&quot;: stderr, &quot;exitcode&quot;: exitcode}
 <br>
 </code>
 </pre>
@@ -780,7 +781,7 @@ check_if_port_occupied<br>
     import socket
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        return s.connect_ex(("localhost", port)) == 0
+        return s.connect_ex((&quot;localhost&quot;, port)) == 0
 <br>
 </code>
 </pre>
@@ -792,16 +793,16 @@ quicksort<br>
 
 
 def quicksort(l):
-    if len(l) > 1:
+    if len(l) &gt; 1:
         p = l[0]  # pivot
         less = []
         more = []
         i = 0
         while True:
             try:
-                if l[i] < p:
+                if l[i] &lt; p:
                     less.append(l.pop(i))
-                if l[i] > p:
+                if l[i] &gt; p:
                     more.append(l.pop(i))
                 if l[i] == p:
                     i += 1
@@ -813,7 +814,7 @@ def quicksort(l):
     return l
 
 
-# print(quicksort([int(x) for x in input("Enter the list of numbers separated by spaces: ").split()]))
+# print(quicksort([int(x) for x in input(&quot;Enter the list of numbers separated by spaces: &quot;).split()]))
 
 
 def foo(l):
@@ -824,7 +825,103 @@ def foo(l):
     return l
 
 
-print(foo([float(x) for x in input("Enter the values separated by spaces: ").split()]))
+print(foo([float(x) for x in input(&quot;Enter the values separated by spaces: &quot;).split()]))
+<br>
+</code>
+</pre>
+<a id="18"></a>
+<br><br>
+index_html_creator<br>
+<pre>
+<code class=" language-python">from os import listdir
+from html import escape
+
+
+html_file = open(&quot;index.html&quot;, &quot;w&quot;)
+
+html_file.write(
+    &quot;&quot;&quot;&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Python_misc&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;prism.css&quot;&gt;
+&lt;/head&gt;
+&lt;body bgcolor=&quot;#F5F2F0&quot; link=&quot;#1F00FF&quot; vlink=&quot;#1F00FF&quot;&gt;\n&quot;&quot;&quot;
+)
+
+
+def contents(f):
+    with open(f, &quot;r&quot;) as file:
+        return file.read()
+
+
+&quot;&quot;&quot;
+ Note that in the above function I have used &quot;with open&quot; instead of the normal
+ file=open(...)
+
+ I could have used the following code:
+
+      def contents(f):
+          file=open(f,&#x27;r&#x27;)
+          return file.readlines()
+          file.close()
+
+ It seems exactly same as the one I&#x27;ve used, right?
+ But hold on.... do you remember?
+ A function exits as soon as it recieves the &quot;return&quot; statement
+ Can you see the problem?
+
+ Yeah... As soon as the function reaches &quot;return file.readlines()&quot;
+ It just simply ignores the rest of the statements
+ And so, the file remains open!
+
+ So what?
+ So, if another section of code tries to open that file, it can result to data corruption!
+ And nobody in their right mind would want something like that to happen, right?
+
+ And that is why i recommend using &quot;with open&quot;
+ It ensures that the file being opened is gracefully closed
+&quot;&quot;&quot;
+
+
+file_list = [x for x in listdir(&quot;.&quot;) if x[-3:] == &quot;.py&quot;]
+
+html_file.write(&quot;&lt;br&gt;\n&quot;)
+
+html_file.write(&quot;&lt;ul&gt;\n&quot;)
+# I am using numbers as link-id because filenames may have spaces, which are
+# not allowed
+for a in range(len(file_list)):
+    html_file.write(&quot;&lt;li&gt;&quot;)
+    html_file.write(&#x27;&lt;a href=&quot;#&#x27; + str(a) + &#x27;&quot;&gt;&#x27; + file_list[a][:-3] + &quot;&lt;/a&gt;&quot;)
+    html_file.write(&quot;&lt;/li&gt;\n&quot;)
+html_file.write(&quot;&lt;/ul&gt;\n&quot;)
+
+html_file.write(&quot;&lt;br&gt;&lt;br&gt;\n&quot;)
+
+id = -1
+
+for file in file_list:
+    id += 1
+    html_file.write(&#x27;&lt;a id=&quot;&#x27; + str(id) + &#x27;&quot;&gt;&lt;/a&gt;\n&#x27;)
+    html_file.write(&quot;&lt;br&gt;&lt;br&gt;\n&quot;)
+    html_file.write(file[:-3] + &quot;&lt;br&gt;\n&quot;)
+    html_file.write(
+        &quot;&quot;&quot;&lt;pre&gt;
+&lt;code class=&quot; language-python&quot;&gt;&quot;&quot;&quot;
+    )
+    html_file.write(escape(contents(file)))
+    html_file.write(
+        &quot;&quot;&quot;&lt;br&gt;
+&lt;/code&gt;
+&lt;/pre&gt;\n&quot;&quot;&quot;
+    )
+
+html_file.write(
+    &quot;&quot;&quot;&lt;script src=&quot;prism.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;&quot;&quot;&quot;
+)
+html_file.close()
 <br>
 </code>
 </pre>
